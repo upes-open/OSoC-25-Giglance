@@ -1,11 +1,9 @@
-<div align="center">
-  <h1>Giglance</h1>
-</div>
+<h1 align="center">
+  <span style="font-size: 3rem; margin-left: 25px;">Giglance</span>
+</h1>
 <h3 align="center">Turning Contributors into Confident Developers</h3>
 
 <p align="center">
-  <img src="https://img.shields.io/github/actions/workflow/status/Giglance/giglance/ci.yml?label=CI%20Status" alt="CI Status" />
-  <img src="https://img.shields.io/github/license/Giglance/giglance?style=flat" alt="License: ISC" />
   <br>
   <img src="https://img.shields.io/badge/Database-PostgreSQL-blue?logo=postgresql" />
   <img src="https://img.shields.io/badge/Backend-Express.js-green?logo=express" />
@@ -67,32 +65,33 @@ Please refer to the [Contribution Guide](https://github.com/upes-open/giglance/b
 
 ## 👨‍💻 Project Mentors
 
-<div align="center" style="display: flex; justify-content: center; gap: 40px; flex-wrap: wrap;">
-  <div style="text-align: center;">
-    <img src="https://github.com/shubhojit-mitra-dev.png" alt="Shubhojit Mitra" width="100" height="100" style="border-radius: 50%;" />
-    <p>Shubhojit Mitra</p>
-    <p>
-      <a href="https://github.com/shubhojit-mitra-dev">
-        <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" />
-      </a>
-      <a href="https://linkedin.com/in/shubhojit-mitra-dev">
-        <img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" />
-      </a>
-    </p>
-  </div>
-  <div style="text-align: center;">
-    <img src="https://github.com/anuja-kotnala.png" alt="Anuja Kotnala" width="100" height="100" style="border-radius: 50%;" />
-    <p>Anuja Kotnala</p>
-    <p>
-      <a href="https://github.com/anuja-kotnala">
-        <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" />
-      </a>
-      <a href="https://linkedin.com/in/anujakotnala">
-        <img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" />
-      </a>
-    </p>
-  </div>
-</div>
+<p align="center">
+  <img src="https://github.com/shubhojit-mitra-dev.png" alt="Shubhojit Mitra" width="100" height="100" style="border-radius: 50%;" />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="https://github.com/anuja-kotnala.png" alt="Anuja Kotnala" width="100" height="100" style="border-radius: 50%;" />
+</p>
+
+<p align="center">
+  <strong>Shubhojit Mitra</strong>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <strong>Anuja Kotnala</strong>
+</p>
+
+<p align="center">
+  <a href="https://github.com/shubhojit-mitra-dev">
+    <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" />
+  </a>
+  <a href="https://linkedin.com/in/shubhojit-mitra-dev">
+    <img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" />
+  </a>
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <a href="https://github.com/anuja-kotnala">
+    <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" />
+  </a>
+  <a href="https://linkedin.com/in/anujakotnala">
+    <img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" />
+  </a>
+</p>
 
 ---
 
