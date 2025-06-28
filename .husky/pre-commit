@@ -13,7 +13,7 @@ echo ""
 
 # Frontend checks
 if [ -d "frontend" ]; then
-  echo "📱 [FRONTEND] Checking code quality..."
+  echo "�� [FRONTEND] Checking code quality..."
   cd frontend
   npx lint-staged
   if [ $? -ne 0 ]; then

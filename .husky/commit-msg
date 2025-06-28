@@ -1,11 +1,8 @@
-#!/usr/bin/env sh
-. "$(dirname -- "$0")/_/husky.sh"
-
 commit_msg_file="$1"
 commit_msg=$(cat "$commit_msg_file")
 regex_pattern="^(fix|feat|create|add|refactor|update|remove)(-#[0-9]+)?: .+$"
 
-if [[ $commit_msg =~ $regex_pattern ]]; then
+if echo "$commit_msg" | grep -qE "$regex_pattern"; then
   echo ""
   echo "✅ Great! Your commit message follows our guidelines."
   echo "🚀 Thank you for contributing to Giglance!"
@@ -22,7 +19,7 @@ else
   echo "• feat: new features"
   echo "• fix: bug fixes" 
   echo "• create: new files or directories"
-  echo "• add: additional functionality"
+  echo "• add: additions to existing files"
   echo "• refactor: code improvements"
   echo "• update: dependency updates"
   echo "• remove: code removal"
@@ -30,6 +27,7 @@ else
   echo "✅ Examples:"
   echo "feat-#123: add user authentication"
   echo "fix: resolve login validation bug"
+  echo "docs: update contributing guidelines"
   echo ""
   echo "📖 Read more in CONTRIBUTING.md"
   echo ""
