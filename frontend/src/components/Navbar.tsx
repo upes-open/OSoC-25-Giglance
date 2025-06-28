@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 
-const Navbar = () => {
+const Navbar: React.FC = () => {
   return (
     <nav className="border-border bg-card/50 border-b backdrop-blur-sm">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

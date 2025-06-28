@@ -3,27 +3,13 @@ import { type Metadata } from "next";
 import { Geist } from "next/font/google";
 import { Providers } from "@/providers/queryProvider";
 import Navbar from "@/components/Navbar";
+import { Toaster } from "sonner";
+import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "Giglance - Freelance Platform",
   description: "A platform that turns contributors into confident developers.",
-  icons: [{ rel: "icon", url: "/favicon.ico" }],
-  openGraph: {
-    title: "Giglance - Freelance Platform",
-    description: "A platform that turns contributors into confident developers.",
-    url: "https://giglance.pages.dev",
-    siteName: "Giglance",
-    images: [
-      {
-        url: "/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "Giglance Open Graph Image",
-      },
-    ],
-    locale: "en_US",
-    type: "website",
-  },
+  icons: [{ rel: "icon", url: "/favicon.ico" }]
 };
 
 const geist = Geist({
@@ -43,6 +29,8 @@ export default function RootLayout({
             <div className="relative z-10">
               <Navbar />
               {children}
+              <Footer />
+              <Toaster />
             </div>
           </div>
         </Providers>

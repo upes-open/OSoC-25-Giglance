@@ -47,8 +47,8 @@ Sorry, there was an error loading the ${filename} file.
 async function getAllDocuments(): Promise<DocumentSection[]> {
   const documents = [
     { id: 'about', title: 'About the Project', filename: 'README.md' },
-    { id: 'contributing', title: 'Contribution Guide', filename: 'CONTRIBUTING.md' },
-    { id: 'conduct', title: 'Code of Conduct', filename: 'CODE_OF_CONDUCT.MD' },
+    { id: 'contributing', title: 'Contribution Guide', filename: '.github/CONTRIBUTING.md' },
+    { id: 'conduct', title: 'Code of Conduct', filename: '.github/CODE_OF_CONDUCT.md' },
   ];
 
   const sections: DocumentSection[] = [];
@@ -67,7 +67,7 @@ async function getAllDocuments(): Promise<DocumentSection[]> {
 
 type SearchParams = Promise<Record<string, string | string[] | undefined>>;
 
-export default async function DocsPage(props: {
+export default async function Docs(props: {
   searchParams: SearchParams;
 }) {
   const documents = await getAllDocuments();
