@@ -1,0 +1,42 @@
+echo "🔍 Running pre-commit checks..."
+echo ""
+
+# Type checking for the entire project
+echo "🔎 [TYPE CHECK] Checking TypeScript types..."
+yarn ts-check
+if [ $? -ne 0 ]; then
+  echo "❌ Type checking failed. Please fix TypeScript errors before committing."
+  exit 1
+fi
+echo "✅ Type checking passed!"
+echo ""
+
+# Frontend checks
+if [ -d "frontend" ]; then
+  echo "📱 [FRONTEND] Checking code quality..."
+  cd frontend
+  npx lint-staged
+  if [ $? -ne 0 ]; then
+    echo "❌ Frontend code quality checks failed"
+    exit 1
+  fi
+  cd ..
+  echo "✅ Frontend checks passed!"
+fi
+
+# Backend checks  
+if [ -d "backend" ]; then
+  echo "⚙️  [BACKEND] Checking code quality..."
+  cd backend
+  npx lint-staged
+  if [ $? -ne 0 ]; then
+    echo "❌ Backend code quality checks failed"
+    exit 1
+  fi
+  cd ..
+  echo "✅ Backend checks passed!"
+fi
+
+echo ""
+echo "🎉 All pre-commit checks passed! Your code is ready to commit."
+echo ""
