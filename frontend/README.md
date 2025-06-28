@@ -4,11 +4,11 @@
 
 ---
 
-### 🚀 What is GigLance?
+### 🚀 What is Giglance?
 
-GigLance is an open-source platform designed to simulate the development of a high-quality, production-grade freelancing marketplace. But more than just a product, **GigLance is an engineering bootcamp disguised as a project**.
+Giglance is an open-source platform designed to simulate the development of a high-quality, production-grade freelancing marketplace. But more than just a product, **Giglance is an engineering bootcamp disguised as a project**.
 
-Whether you're a beginner in backend APIs, a frontend enthusiast, or a DevOps learner — **GigLance welcomes you to contribute, learn real-world development practices, and collaborate on building something meaningful.**
+Whether you're a beginner in backend APIs, a frontend enthusiast, or a DevOps learner — **Giglance welcomes you to contribute, learn real-world development practices, and collaborate on building something meaningful.**
 
 ---
 
@@ -28,7 +28,7 @@ This project strictly follows **real-world software development workflows**, ena
 
 ### 🌟 Why Contribute?
 
-By contributing to GigLance, you’re not just building features — you’re building your **portfolio**, **practical skill set**, and **confidence** as a developer.
+By contributing to Giglance, you’re not just building features — you’re building your **portfolio**, **practical skill set**, and **confidence** as a developer.
 
 Here’s what you gain:
 
@@ -46,7 +46,7 @@ Here’s what you gain:
 
 We have carefully crafted a transparent and supportive contribution process:
 
-* 📋 Well-documented [CONTRIBUTING.md](./CONTRIBUTING.md) file
+* 📋 Well-documented [CONTRIBUTING.md](https://github.com/upes-open/giglance/blob/main/.github/CONTRIBUTING.md) file
 * 🧑‍🏫 Beginner-friendly onboarding, labeled issues by difficulty
 * 💬 Active feedback on PRs
 * 🧩 Collaboration with fellow contributors in a structured workflow
@@ -57,7 +57,7 @@ We don’t expect you to be perfect — **we help you get there**.
 
 ---
 
-### 🌍 What Makes GigLance Special?
+### 🌍 What Makes Giglance Special?
 
 * It mirrors how modern software is actually built in production.
 * It’s designed to teach you how to think like an engineer, not just code like one.
@@ -66,6 +66,6 @@ We don’t expect you to be perfect — **we help you get there**.
 
 ---
 
-Whether you're a student trying to land your first internship, or a developer looking to sharpen your skills with real challenges — **GigLance is your launchpad.**
+Whether you're a student trying to land your first internship, or a developer looking to sharpen your skills with real challenges — **Giglance is your launchpad.**
 
 So fork the repo, pick an issue, write some code, and **become the developer you aspire to be**. 💪

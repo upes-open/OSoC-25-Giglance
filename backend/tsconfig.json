@@ -24,6 +24,14 @@
     "allowImportingTsExtensions": false,
   },
   "include": ["src/**/*", "eslint.config.js", "jest.config.js", "src/types/**/*.d.ts"],
+  "exclude": [
+    "node_modules",
+    "build",
+    "dist",
+    "src/lib/prisma",
+    "prisma/migrations",
+    "**/*.generated.ts"
+  ],
   "ts-node": {
     "esm": true,
     "experimentalSpecifierResolution": "node"

@@ -5,5 +5,12 @@
     "outDir": "./build"
   },
   "include": ["src/**/*"],
-  "exclude": ["node_modules", "build", "**/*.test.ts", "jest.config.js", "./src/lib/prisma"]
+  "exclude": [
+    "node_modules", 
+    "build", 
+    "**/*.test.ts", 
+    "jest.config.js", 
+    "src/lib/prisma",
+    "prisma/migrations"
+  ]
 }

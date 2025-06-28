@@ -8,6 +8,7 @@ import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
+import { CodeBlock } from '@/components/ui/codeblock';
 
 type DocumentSection = {
   id: string;
@@ -47,8 +48,8 @@ Sorry, there was an error loading the ${filename} file.
 async function getAllDocuments(): Promise<DocumentSection[]> {
   const documents = [
     { id: 'about', title: 'About the Project', filename: 'README.md' },
-    { id: 'contributing', title: 'Contribution Guide', filename: '.github/CONTRIBUTING.md' },
-    { id: 'conduct', title: 'Code of Conduct', filename: '.github/CODE_OF_CONDUCT.md' },
+    { id: 'contributing', title: 'Contribution Guide', filename: '../.github/CONTRIBUTING.md' },
+    { id: 'conduct', title: 'Code of Conduct', filename: '../.github/CODE_OF_CONDUCT.md' },
   ];
 
   const sections: DocumentSection[] = [];
@@ -166,7 +167,7 @@ export default async function Docs(props: {
                     const id = createSlug(children);
                     return <h4 id={id} className="text-xl font-medium mt-6 mb-2 text-foreground" {...props}>{children}</h4>;
                   },
-                  pre: ({ ...props }) => <pre className="p-4 rounded-lg overflow-x-auto text-sm my-4 bg-muted border border-border" {...props} />,
+                  pre: ({ children, ...props }) => <CodeBlock {...props}>{children}</CodeBlock>,
                   code: ({ children, ...props }) => {
                     const inline = 'inline' in props && props.inline;
                     return inline
