@@ -55,7 +55,7 @@ The goal: Build in public. Learn by contributing. Empower future developers.
 
 - **AWS** cloud platform for deployment
 - **Docker** for containerization
-- **Kubernetes** fro orchestration and deployment cluster
+- **Kubernetes** for orchestration and deployment cluster
 
 ---
 
