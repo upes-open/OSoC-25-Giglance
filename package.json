@@ -1,0 +1,36 @@
+{
+  "name": "basic-pern-project-structure",
+  "version": "1.0.0",
+  "main": "",
+  "scripts": {
+    "dev": "concurrently \"yarn dev:backend\" \"yarn dev:frontend\"",
+    "dev:frontend": "cd frontend && yarn dev",
+    "dev:backend": "cd backend && yarn dev",
+    "install": "yarn install && yarn install:frontend && yarn install:backend",
+    "install:frontend": "cd frontend && yarn install",
+    "install:backend": "cd backend && yarn install",
+    "build": "yarn build:backend && yarn build:frontend",
+    "build:backend": "cd backend && yarn build",
+    "build:frontend": "cd frontend && yarn build",
+    "start": "yarn start:backend && yarn start:frontend",
+    "start:backend": "cd backend && yarn start",
+    "start:frontend": "cd frontend && yarn start",
+    "ts-check": "yarn ts-check:backend && yarn ts-check:frontend",
+    "ts-check:backend": "cd backend && tsc --noEmit",
+    "ts-check:frontend": "cd frontend && tsc --noEmit",
+    "ts-check:watch": "concurrently \"yarn ts-check:backend --watch\" \"yarn ts-check:frontend --watch\"",
+    "ts-check:clean": "yarn ts-check:clean:backend && yarn ts-check:clean:frontend",
+    "ts-check:clean:backend": "cd backend && tsc --build --clean && tsc --noEmit",
+    "ts-check:clean:frontend": "cd frontend && rm -rf .next && tsc --noEmit",
+    "prepare": "husky"
+  },
+  "keywords": [],
+  "author": "Shubhojit Mitra <Shubhojit.120225@stu.upes.ac.in>",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "concurrently": "^9.2.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.1.2"
+  }
+}
