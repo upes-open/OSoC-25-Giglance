@@ -22,7 +22,7 @@ Our goal is simple: **Transform you from a contributor into a confident, industr
 4. Request for Changes/Pull Requests
 5. Guidelines to Follow
 6. Testing Requirements
-
+ 
 
 ## Code of Conduct
 
