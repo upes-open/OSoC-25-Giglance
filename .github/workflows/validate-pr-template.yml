@@ -1,0 +1,79 @@
+name: 🚨 Validate PR Template
+
+on:
+  pull_request_target:
+    types: [opened, edited]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  validate-pr-template:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Validate PR Body
+        id: validate
+        run: |
+          echo "🔍 Validating PR template..."
+
+          PR_BODY=$(jq -r .pull_request.body < "$GITHUB_EVENT_PATH")
+
+          # Define required sections and patterns
+          REQUIRED_HEADERS=("## Summary" "## Description" "## Images" "## Issue Addressed" "## Prerequisites")
+          MISSING_HEADERS=()
+          for header in "${REQUIRED_HEADERS[@]}"; do
+            if ! echo "$PR_BODY" | grep -q "$header"; then
+              MISSING_HEADERS+=("$header")
+            fi
+          done
+
+          # Check for valid 'Closes #<issue>' line
+          if ! echo "$PR_BODY" | grep -Eq 'Closes\s+#\d+'; then
+            MISSING_HEADERS+=("Valid 'Closes #<issue_number>' line")
+          fi
+
+          # Check for checked prerequisites checkbox
+          if ! echo "$PR_BODY" | grep -q "\- \[x\] .*CONTRIBUTING"; then
+            MISSING_HEADERS+=("Checked 'Have you followed all the CONTRIBUTING GUIDELINES?' box")
+          fi
+
+          if [ ${#MISSING_HEADERS[@]} -gt 0 ]; then
+            echo "❌ PR template validation failed."
+            echo "MISSING_HEADERS<<EOF" >> $GITHUB_ENV
+            printf '%s\n' "${MISSING_HEADERS[@]}" >> $GITHUB_ENV
+            echo "EOF" >> $GITHUB_ENV
+            echo "result=failure" >> $GITHUB_OUTPUT
+          else
+            echo "✅ PR template passed validation."
+            echo "result=success" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Comment and Close PR if Invalid
+        if: steps.validate.outputs.result == 'failure'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          COMMENT_BODY="## ❌ Pull Request Template Validation Failed
+
+Your PR is missing one or more required sections:
+
+\`\`\`
+${{ env.MISSING_HEADERS }}
+\`\`\`
+
+Please update your PR to follow the [Pull Request Template](https://github.com/upes-open/giglance/blob/main/.github/pull_request_template.md). This PR is being closed automatically.
+
+You can reopen it after making the necessary changes."
+
+          gh pr comment "${{ github.event.pull_request.number }}" --body "$COMMENT_BODY"
+          gh pr edit "${{ github.event.pull_request.number }}" --add-label "pr-template-invalid"
+          gh pr close "${{ github.event.pull_request.number }}"
+
+      - name: Mark PR as Valid
+        if: steps.validate.outputs.result == 'success'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "✅ PR is valid. Continuing with other workflows."
