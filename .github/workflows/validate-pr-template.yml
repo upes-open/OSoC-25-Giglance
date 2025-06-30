@@ -17,7 +17,6 @@ jobs:
         id: validate
         run: |
           echo "🔍 Validating PR template..."
-
           PR_BODY=$(jq -r .pull_request.body < "$GITHUB_EVENT_PATH")
 
           # Define required sections and patterns
@@ -55,7 +54,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          COMMENT_BODY="## ❌ Pull Request Template Validation Failed
+          COMMENT_BODY=$(cat <<EOF
+## ❌ Pull Request Template Validation Failed
 
 Your PR is missing one or more required sections:
 
@@ -65,8 +65,9 @@ ${{ env.MISSING_HEADERS }}
 
 Please update your PR to follow the [Pull Request Template](https://github.com/upes-open/giglance/blob/main/.github/pull_request_template.md). This PR is being closed automatically.
 
-You can reopen it after making the necessary changes."
-
+You can reopen it after making the necessary changes.
+EOF
+)
           gh pr comment "${{ github.event.pull_request.number }}" --body "$COMMENT_BODY"
           gh pr edit "${{ github.event.pull_request.number }}" --add-label "pr-template-invalid"
           gh pr close "${{ github.event.pull_request.number }}"
