@@ -1,0 +1,13 @@
+{
+  "LABEL": {
+    "name": "Title needs formatting",
+    "color": "F9D0C4"
+  },
+  "CHECKS": {
+    "regexp": "^#\\d+ - .+"
+  },
+  "MESSAGES": {
+    "success": "🎉 Thank you! Your PR title follows the required format.",
+    "failure": "🚫 Your PR title doesn't follow the required format.\n\nPlease use the following format:\n\n`#<issue_number> - <your descriptive title>`\n\nExample:\n`#123 - Add user authentication system`\n\nUpdate the PR title and we'll take another look. 😉"
+  }
+}

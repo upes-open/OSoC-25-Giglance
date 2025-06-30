@@ -1,0 +1,46 @@
+name: 🚨 PR Title Checker
+
+on:
+  pull_request_target:
+    types:
+      - opened
+      - edited
+
+permissions:
+  contents: write
+  pull-requests: write
+  repository-projects: write
+
+jobs:
+  check-title:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Run PR Title Checker
+        id: title-check
+        uses: thehanimo/pr-title-checker@v1.4.1
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          pass_on_octokit_error: false
+          configuration_path: .github/pr-title-check-config.json
+
+      - name: PR title is valid 🎉
+        if: success()
+        run: |
+          gh pr comment ${{ github.event.pull_request.number }} \
+            --body "✅ Thanks @${{ github.actor }}! Your PR title is formatted correctly!"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: PR title is invalid ❌
+        if: failure()
+        run: |
+          gh pr comment ${{ github.event.pull_request.number }} \
+            --body $'🚫 Hey @${{ github.actor }}, your PR title is not in the correct format.\n\nPlease follow the required format: \`#<issue_number> - <title>\`\n\nExample:\n\`#123 - Add login validation\`\n\nCheck our [contributor guidelines](https://github.com/upes-open/giglance/blob/main/.github/CONTRIBUTING.md) for more help.'
+          gh pr edit "${{ github.event.pull_request.number }}" --add-label "Title needs formatting"
+          gh pr close "${{ github.event.pull_request.number }}"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
