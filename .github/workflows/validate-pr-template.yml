@@ -53,9 +53,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           COMMENT="❌ **PR Template Validation Failed**\n\nYour PR is missing required fields:\n\n${{ env.MISSING_HEADERS }}\n\nPlease update your PR to follow the required format: https://github.com/upes-open/giglance/blob/main/.github/pull_request_template.md\n\nThis PR is being closed automatically."
-          gh pr comment "${{ github.event.pull_request.number }}" --body "$COMMENT"
-          gh pr edit "${{ github.event.pull_request.number }}" --add-label "pr-template-invalid"
-          gh pr close "${{ github.event.pull_request.number }}"
+          gh pr comment "${{ github.event.pull_request.number }}" -R "${{ github.repository }}" --body "$COMMENT"
+          gh pr edit "${{ github.event.pull_request.number }}" -R "${{ github.repository }}" --add-label "pr-template-invalid"
+          gh pr close "${{ github.event.pull_request.number }}" -R "${{ github.repository }}"
 
       - name: PR is valid
         if: steps.validate.outputs.result == 'success'
