@@ -6,7 +6,7 @@
     "dev": "concurrently \"yarn dev:backend\" \"yarn dev:frontend\"",
     "dev:frontend": "cd frontend && yarn dev",
     "dev:backend": "cd backend && yarn dev",
-    "install": "yarn install && yarn install:frontend && yarn install:backend",
+    "install-all": "yarn install && yarn install:frontend && yarn install:backend",
     "install:frontend": "cd frontend && yarn install",
     "install:backend": "cd backend && yarn install",
     "build": "yarn build:backend && yarn build:frontend",
