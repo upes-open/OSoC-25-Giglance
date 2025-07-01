@@ -14,8 +14,8 @@ _Include relevant images or diagrams that can help reviewers visualize the chang
 
 _Enter the issue number of the bug(s) that this PR fixes_
 
-- Template should be strictly **Closes <issue_number>**
-- Example: Closes #1
+Template should be strictly **Closes <issue_number>**
+Example: Closes #1
 
 ## Prerequisites
 
