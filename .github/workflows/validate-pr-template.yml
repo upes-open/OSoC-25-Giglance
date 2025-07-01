@@ -29,9 +29,9 @@ jobs:
           done
 
           # Closes issue check
-          if ! echo "$PR_BODY" | grep -Eiq '(^|\n)-?\s*Closes\s+#\d+'; then
-            MISSING_HEADERS+=("Valid 'Closes #<issue_number>' line")
-          fi
+          # if ! echo "$PR_BODY" | grep -Eiq '(^|\n)-?\s*Closes\s+#\d+'; then
+          #   MISSING_HEADERS+=("Valid 'Closes #<issue_number>' line")
+          # fi
 
           # CONTRIBUTING checkbox check
           if ! echo "$PR_BODY" | grep -Eiq '\- \[x\] .*CONTRIBUTING'; then
