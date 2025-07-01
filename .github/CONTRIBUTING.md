@@ -36,7 +36,7 @@ Giglance is committed to fostering an inclusive, respectful, and collaborative e
 
 We're building more than just software - we're building a community of confident developers.
 
-Have a look at the detailed [Code of Conduct](https://github.com/upes-open/giglance/blob/main/.github/CODE_OF_CONDUCT.md)
+Have a look at the detailed [Code of Conduct](https://github.com/upes-open/OSoC-25-Giglance/blob/main/.github/CODE_OF_CONDUCT.md)
 
 
 ## Setting up the Project
@@ -113,8 +113,8 @@ yarn dev
 Giglance follows a professional development workflow designed to teach you industry practices:
 
 ### Issue-Based Development
-1. **Browse Issues**: Check the [Issues](https://github.com/upes-open/giglance/issues) tab for tasks labeled by difficulty (`easy`, `intermediate`, `advanced`)
-2. **Claim an Issue**: Comment on an issue to request assignment before starting work. Please follow the [Code of Conduct](https://github.com/upes-open/giglance/blob/main/.github/CODE_OF_CONDUCT.md)
+1. **Browse Issues**: Check the [Issues](https://github.com/upes-open/OSoC-25-Giglance/issues) tab for tasks labeled by difficulty (`easy`, `intermediate`, `advanced`)
+2. **Claim an Issue**: Comment on an issue to request assignment before starting work. Please follow the [Code of Conduct](https://github.com/upes-open/OSoC-25-Giglance/blob/main/.github/CODE_OF_CONDUCT.md)
 3. **Understand Requirements**: Read the issue description carefully and ask questions if needed
 
 ### Branch Strategy
