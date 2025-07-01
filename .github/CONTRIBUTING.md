@@ -189,8 +189,8 @@ refactor: optimize database queries
 
 ### 3. PR Title Format
 ```
-#123-Add user authentication system
-#456-Resolve login validation issue
+#123 - Add user authentication system
+#456 - Resolve login validation issue
 ```
 
 ### 4. Code Quality Standards

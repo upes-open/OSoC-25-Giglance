@@ -29,12 +29,12 @@ jobs:
           done
 
           # Closes issue check
-          if ! echo "$PR_BODY" | grep -Eq 'Closes\s+#\d+'; then
+          if ! echo "$PR_BODY" | grep -Eiq 'Closes\s+#\d+'; then
             MISSING_HEADERS+=("Valid 'Closes #<issue_number>' line")
           fi
 
           # CONTRIBUTING checkbox check
-          if ! echo "$PR_BODY" | grep -q "\- \[x\] .*CONTRIBUTING"; then
+          if ! echo "$PR_BODY" | grep -Eiq '\- \[x\] .*CONTRIBUTING'; then
             MISSING_HEADERS+=("Checked 'Have you followed all the CONTRIBUTING GUIDELINES?' box")
           fi
 
@@ -52,8 +52,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          COMMENT="❌ **PR Template Validation Failed**\n\nYour PR is missing required fields:\n\n${{ env.MISSING_HEADERS }}\n\nPlease update your PR to follow the required format: https://github.com/upes-open/giglance/blob/main/.github/pull_request_template.md\n\nThis PR is being closed automatically."
-          gh pr comment "${{ github.event.pull_request.number }}" -R "${{ github.repository }}" --body "$COMMENT"
+          gh pr comment "${{ github.event.pull_request.number }}" -R "${{ github.repository }}" --body $'❌ **PR Template Validation Failed**\n\nYour PR is missing required fields:\n\n${{ env.MISSING_HEADERS }}\n\nPlease update your PR to follow the required format: https://github.com/upes-open/giglance/blob/main/.github/pull_request_template.md\n\nThis PR is being closed automatically.'
           gh pr edit "${{ github.event.pull_request.number }}" -R "${{ github.repository }}" --add-label "pr-template-invalid"
           gh pr close "${{ github.event.pull_request.number }}" -R "${{ github.repository }}"
 
