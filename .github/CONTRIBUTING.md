@@ -93,7 +93,7 @@ touch .env
 
 Add the following to .env:
 ```env
-NEXT_PUBLIC_SERVER_API_URL="http://localhost:5000/api"
+NEXT_PUBLIC_SERVER_API_URL="http://localhost:5000"
 ```
 
 ### 8. Start the Development Servers
