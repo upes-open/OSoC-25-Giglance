@@ -32,6 +32,10 @@ The goal: Build in public. Learn by contributing. Empower future developers.
 
 ---
 
+## Architecture 
+
+<img src="./frontend/public/architecture.png" alt="Giglance Architecture preview" width="100%">
+
 Here is an example homepage: [Figma](https://www.figma.com/design/zYULh1xxcNLorxnNzPv64L/Giglance-Freelance-Platform?node-id=1-3&p=f&t=wbgdNrusO3KexMDX-0)
 
 ## 🛠️ Tech Stack
