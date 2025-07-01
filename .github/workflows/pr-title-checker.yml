@@ -32,6 +32,7 @@ jobs:
         run: |
           gh pr comment ${{ github.event.pull_request.number }} \
             --body "✅ Thanks @${{ github.actor }}! Your PR title is formatted correctly!"
+          gh pr edit "${{ github.event.pull_request.number }}" --remove-label "Title needs formatting"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 

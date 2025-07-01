@@ -62,4 +62,10 @@ jobs:
 
       - name: PR is valid
         if: steps.validate.outputs.result == 'success'
-        run: echo "✅ PR is valid and will proceed to next workflows."
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh pr comment ${{ github.event.pull_request.number }} \
+            --body "✅ Thanks @${{ github.actor }}! Your PR description is formatted correctly!"
+          gh pr edit ${{ github.event.pull_request.number }} --remove-label "PR Template Invalid"
+          gh pr reopen ${{ github.event.pull_request.number }}
