@@ -12,7 +12,6 @@ yarn-error.log
 /out
 
 /src/lib/prisma
-/prisma/migrations
 
 # TypeScript cache
 *.tsbuildinfo
