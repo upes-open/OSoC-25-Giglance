@@ -32,6 +32,8 @@ The goal: Build in public. Learn by contributing. Empower future developers.
 
 ---
 
+Here is an example homepage: [Figma](https://www.figma.com/design/zYULh1xxcNLorxnNzPv64L/Giglance-Freelance-Platform?node-id=1-3&p=f&t=wbgdNrusO3KexMDX-0)
+
 ## 🛠️ Tech Stack
 
 ### 🖥️ Frontend (`frontend/`)
@@ -47,8 +49,7 @@ The goal: Build in public. Learn by contributing. Empower future developers.
 - **Express.js** with **TypeScript**
 - **Prisma ORM** + **PostgreSQL**
 - **Zod** for schema validation
-- **JWT + Bcrypt** for authentication
-- **Resend / Nodemailer** for email
+- **Clerk** for authentication
 - **OpenAI Embeddings + pgvector** for AI recommendations
 
 ### 🌐 Deployment
