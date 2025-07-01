@@ -61,7 +61,7 @@ The goal: Build in public. Learn by contributing. Empower future developers.
 
 ## ⚙️ Installation
 
-Please refer to the [Contribution Guide](https://github.com/upes-open/giglance/blob/main/.github/CONTRIBUTING.md) for detailed steps for installation.
+Please refer to the [Contribution Guide](https://github.com/upes-open/OSoC-25-Giglance/blob/main/.github/CONTRIBUTING.md) for detailed steps for installation.
 
 ## 👨‍💻 Project Mentors
 
@@ -99,7 +99,7 @@ Please refer to the [Contribution Guide](https://github.com/upes-open/giglance/b
 
 We follow an easy-to-understand, beginner-friendly contribution process with labeled issues, test-driven development, and previews.
 
-📖 Read our full [CONTRIBUTING.md](https://github.com/upes-open/giglance/blob/main/.github/CONTRIBUTING.md) for setup, issue flow, and PR guidelines.
+📖 Read our full [CONTRIBUTING.md](https://github.com/upes-open/OSoC-25-Giglance/blob/main/.github/CONTRIBUTING.md) for setup, issue flow, and PR guidelines.
 
 ---
 
