@@ -29,7 +29,7 @@ jobs:
           done
 
           # Closes issue check
-          if ! echo "$PR_BODY" | grep -Eiq 'Closes\s+#\d+'; then
+          if ! echo "$PR_BODY" | grep -Eiq '(^|\n)-?\s*Closes\s+#\d+'; then
             MISSING_HEADERS+=("Valid 'Closes #<issue_number>' line")
           fi
 
@@ -46,6 +46,10 @@ jobs:
             echo "✅ PR template passed validation."
             echo "result=success" >> $GITHUB_OUTPUT
           fi
+
+      - name: Debug PR Body
+        run: |
+          echo "$PR_BODY"
 
       - name: Comment and Close PR if Invalid
         if: steps.validate.outputs.result == 'failure'
