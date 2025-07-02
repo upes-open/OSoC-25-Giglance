@@ -1,4 +1,5 @@
 import "@/styles/globals.css";
+import "@/styles/customAnimations.css";
 import { type Metadata } from "next";
 import { Geist } from "next/font/google";
 import { Providers } from "@/providers/queryProvider";
