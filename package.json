@@ -4,6 +4,8 @@
   "main": "",
   "scripts": {
     "dev": "concurrently \"yarn dev:backend\" \"yarn dev:frontend\"",
+    "db:generate": "prisma generate",
+    "db:migrate": "prisma migrate dev",
     "dev:frontend": "cd frontend && yarn dev",
     "dev:backend": "cd backend && yarn dev",
     "install-all": "yarn install && yarn install:frontend && yarn install:backend",
@@ -31,6 +33,11 @@
   "devDependencies": {
     "concurrently": "^9.2.0",
     "husky": "^9.1.7",
-    "lint-staged": "^16.1.2"
+    "lint-staged": "^16.1.2",
+    "prisma": "^6.11.0"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.11.0",
+    "typescript": "^5.8.3"
   }
 }
