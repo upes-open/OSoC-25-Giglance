@@ -17,6 +17,9 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@clerk/elements": "^0.23.36",
+    "@clerk/nextjs": "^6.23.2",
+    "@radix-ui/react-label": "^2.1.7",
     "@radix-ui/react-slot": "^1.2.3",
     "@t3-oss/env-nextjs": "^0.12.0",
     "@tanstack/react-query": "^5.81.2",
@@ -39,13 +42,14 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.1",
+    "@rushstack/eslint-patch": "^1.12.0",
     "@tailwindcss/postcss": "^4.0.15",
     "@tanstack/eslint-plugin-query": "^5.81.2",
     "@types/node": "^20.14.10",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
-    "eslint": "^9.23.0",
-    "eslint-config-next": "^15.2.3",
+    "eslint": "^9.30.1",
+    "eslint-config-next": "^15.3.4",
     "postcss": "^8.5.3",
     "prettier": "^3.5.3",
     "prettier-plugin-tailwindcss": "^0.6.11",
