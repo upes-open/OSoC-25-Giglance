@@ -53,7 +53,7 @@
 
 "@clerk/nextjs@^6.23.2":
   version "6.23.2"
-  resolved "https://registry.npmjs.org/@clerk/nextjs/-/nextjs-6.23.2.tgz"
+  resolved "https://registry.yarnpkg.com/@clerk/nextjs/-/nextjs-6.23.2.tgz#d554ebdc7aaa44e0579251be1c28ecbee32d8442"
   integrity sha512-7Jh+rVLYA90YkFEExLzbMU2hvZwAWBRpIhHJE+mHBhUmOrwqxTqs42zizYIN6qXxyMaN+GLw4x/FdI532JTzxA==
   dependencies:
     "@clerk/backend" "^2.3.1"
