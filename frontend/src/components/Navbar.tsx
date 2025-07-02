@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import { useUser,UserButton } from '@clerk/nextjs'
 
 const Navbar: React.FC = () => {
-  const { isSignedIn, user, isLoaded } = useUser()
+  const { isSignedIn, isLoaded } = useUser()
   const router = useRouter();
   return (
     <nav className="border-border bg-card/50 border-b backdrop-blur-sm">
