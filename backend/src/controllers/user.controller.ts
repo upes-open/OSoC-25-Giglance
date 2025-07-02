@@ -13,18 +13,21 @@ export const getUsers = TryCatch(async (req: Request, res: Response) => {
 });
 
 export const createUser = TryCatch(async (req: Request, res: Response) => {
-  const { name, email }: { name?: string; email: string } = req.body as { name?: string; email: string };
+  const { id, name, email } = req.body;
+
+  if (!id || !email) {
+    return res.status(400).json({ success: false, message: 'Missing required fields' });
+  }
+
+  const existingUser = await prisma.user.findUnique({ where: { id } });
+
+  if (existingUser) {
+    return res.status(200).json({ success: true, data: existingUser, message: 'User already exists' });
+  }
 
   const user = await prisma.user.create({
-    data: {
-      name,
-      email,
-    },
+    data: { id, name, email },
   });
 
-  res.status(201).json({
-    success: true,
-    data: user,
-    message: 'User created successfully',
-  });
-})
+  res.status(201).json({ success: true, data: user, message: 'User created successfully' });
+});
