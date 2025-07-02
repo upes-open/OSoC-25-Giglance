@@ -14,8 +14,7 @@ import {
   SelectItem,
 } from "@/components/ui/select";
 import { Form, FormField, FormItem, FormControl } from "@/components/ui/form";
-import { Search } from "lucide-react";
-import clsx from "clsx";
+import { Search, X } from "lucide-react";
 
 const formSchema = z.object({
   userType: z.string(),
@@ -23,13 +22,6 @@ const formSchema = z.object({
 });
 
 type FormData = z.infer<typeof formSchema>;
-
-interface SearchBarProps {
-  userTypes?: string[];
-  defaultUserType?: string;
-  placeholder?: string;
-  onSearch?: (data: FormData) => void;
-}
 
 const predefinedTags = [
   "Web Design",
@@ -39,37 +31,41 @@ const predefinedTags = [
   "Marketing",
 ];
 
-const SearchBar: React.FC<SearchBarProps> = ({
-  userTypes = ["Freelancer", "Client", "Agency"],
-  defaultUserType = "Freelancer",
-  placeholder = "Search for services or profiles...",
-  onSearch = (data) => console.log("Submitted:", data),
-}) => {
-  const [selectedTag, setSelectedTag] = useState<string | null>(null);
+const SearchBar: React.FC = () => {
+  const [selectedTags, setSelectedTags] = useState<string[]>([]);
 
   const form = useForm<FormData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      userType: defaultUserType,
+      userType: "Freelancer",
       searchQuery: "",
     },
   });
 
   const handleTagClick = (tag: string) => {
-    setSelectedTag(tag);
+    if (!selectedTags.includes(tag)) {
+      setSelectedTags((prev) => [...prev, tag]);
+    }
     form.setValue("searchQuery", tag);
   };
 
+  const removeTag = (tag: string) => {
+    setSelectedTags((prev) => prev.filter((t) => t !== tag));
+  };
+
   const onSubmit = (data: FormData) => {
-    onSearch(data);
+    console.log("Submitted:", { ...data, selectedTags });
   };
 
   return (
     <div className="px-4 sm:px-8">
-      <div className="bg-card border-border w-full rounded-xl border px-3 py-4 shadow-sm">
+      <div className="bg-card w-full rounded-2xl px-6 py-5 shadow-md">
         <Form form={form}>
           <form onSubmit={form.handleSubmit(onSubmit)}>
-            <div className="flex flex-wrap items-center gap-x-4 gap-y-3">
+            <div className="flex flex-wrap items-center gap-4">
+              {/* Search Icon */}
+              <Search className="text-muted-foreground h-5 w-5" />
+
               {/* Dropdown */}
               <Controller
                 control={form.control}
@@ -81,12 +77,12 @@ const SearchBar: React.FC<SearchBarProps> = ({
                       defaultValue={field.value}
                     >
                       <FormControl>
-                        <SelectTrigger className="bg-background border-border w-[150px] rounded-md border">
+                        <SelectTrigger className="bg-background w-[140px] border-none px-2 shadow-none">
                           <SelectValue placeholder="User type" />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        {userTypes.map((type) => (
+                        {["Freelancer", "Client", "Agency"].map((type) => (
                           <SelectItem key={type} value={type}>
                             {type}
                           </SelectItem>
@@ -97,38 +93,23 @@ const SearchBar: React.FC<SearchBarProps> = ({
                 )}
               />
 
-              {/* Tags */}
-              <div className="flex flex-wrap gap-2">
-                {predefinedTags.map((tag) => (
-                  <button
-                    key={tag}
-                    type="button"
-                    className={clsx(
-                      "border-border rounded-full border px-3 py-1 text-sm transition-colors",
-                      selectedTag === tag
-                        ? "bg-primary text-primary-foreground"
-                        : "bg-muted text-muted-foreground hover:bg-muted/70",
-                    )}
-                    onClick={() => handleTagClick(tag)}
-                  >
-                    {tag}
-                  </button>
-                ))}
-              </div>
+              {/* Divider */}
+              <div className="bg-border h-6 w-px" />
 
-              {/* Search Input */}
+              {/* Tag Selector */}
+              <Search className="text-muted-foreground h-5 w-5" />
+              {/* Search Input Box */}
               <Controller
                 control={form.control}
                 name="searchQuery"
                 render={({ field }) => (
-                  <FormItem className="min-w-[200px] flex-grow">
+                  <FormItem className="min-w-[200px]">
                     <FormControl>
                       <div className="relative">
-                        <Search className="text-muted-foreground absolute top-2.5 left-3 h-4 w-4" />
                         <Input
                           {...field}
-                          placeholder={placeholder}
-                          className="bg-input border-border w-full rounded-md border pl-10"
+                          placeholder="Search..."
+                          className="bg-muted border-border text-foreground w-full rounded-full border px-4 py-2 text-sm shadow-sm"
                         />
                       </div>
                     </FormControl>
@@ -136,11 +117,44 @@ const SearchBar: React.FC<SearchBarProps> = ({
                 )}
               />
 
+              {/* Selected Tags */}
+              <div className="flex flex-wrap gap-2">
+                {selectedTags.map((tag) => (
+                  <div
+                    key={tag}
+                    className="bg-muted text-muted-foreground flex items-center gap-1 rounded-full px-3 py-1 text-sm"
+                  >
+                    {tag}
+                    <button
+                      type="button"
+                      onClick={() => removeTag(tag)}
+                      className="hover:text-destructive"
+                    >
+                      <X className="h-4 w-4" />
+                    </button>
+                  </div>
+                ))}
+              </div>
+
+              {/* All Clickable Tags */}
+              <div className="flex flex-wrap gap-2">
+                {predefinedTags.map((tag) => (
+                  <button
+                    key={tag}
+                    type="button"
+                    onClick={() => handleTagClick(tag)}
+                    className="border-border text-muted-foreground hover:bg-muted/80 rounded-full border px-3 py-1 text-sm"
+                  >
+                    {tag}
+                  </button>
+                ))}
+              </div>
+
               {/* Search Button */}
-              <div className="w-full sm:w-auto">
+              <div className="ml-auto">
                 <Button
                   type="submit"
-                  className="bg-primary text-primary-foreground hover:bg-primary/90 w-full rounded-md px-5 font-semibold sm:w-auto"
+                  className="rounded-lg bg-teal-500 px-6 py-2 font-medium text-white hover:bg-teal-600"
                 >
                   Search
                 </Button>
