@@ -5,6 +5,7 @@ import { Providers } from "@/providers/queryProvider";
 import Navbar from "@/components/Navbar";
 import { Toaster } from "sonner";
 import Footer from "@/components/Footer";
+import { ClerkProvider } from "@clerk/nextjs";
 
 export const metadata: Metadata = {
   title: "Giglance - Freelance Platform",
@@ -21,6 +22,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
+    <ClerkProvider>
     <html lang="en" className={`${geist.variable}`}>
       <body>
         <Providers>
@@ -36,5 +38,6 @@ export default function RootLayout({
         </Providers>
       </body>
     </html>
+    </ClerkProvider>
   );
 }
