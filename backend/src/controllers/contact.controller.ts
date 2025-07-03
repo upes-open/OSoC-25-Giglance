@@ -1,16 +1,31 @@
 import type { Request, Response } from 'express'
 import { Resend } from 'resend'
+import { z } from 'zod'
+
 import { CONTACT_ADMIN_TEMPLATE, CONTACT_USER_TEMPLATE } from '@/lib/Templates/contactTemplate'
 import { TryCatch } from '@/utils/exceptionHandler'
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 
-export const handleContactForm = TryCatch(async (req: Request, res: Response) => {
-  const { firstName, lastName, email, message } = req.body
+const contactSchema = z.object({
+  firstName: z.string().min(1, 'First name is required'),
+  lastName: z.string().min(1, 'Last name is required'),
+  email: z.string().email('Invalid email'),
+  message: z.string().min(1, 'Message is required'),
+})
 
-  if (!firstName || !lastName || !email || !message) {
-    return res.status(400).json({ success: false, message: 'Missing required fields' })
+export const handleContactForm = TryCatch(async (req: Request, res: Response) => {
+  const parseResult = contactSchema.safeParse(req.body)
+
+  if (!parseResult.success) {
+    return res.status(400).json({
+      success: false,
+      message: 'Validation failed',
+      errors: parseResult.error.flatten().fieldErrors,
+    })
   }
+
+  const { firstName, lastName, email, message } = parseResult.data
 
   // Inject data into email templates
   const userEmailHtml = CONTACT_USER_TEMPLATE.replace('{firstName}', firstName)
@@ -19,7 +34,6 @@ export const handleContactForm = TryCatch(async (req: Request, res: Response) =>
     .replace('{lastName}', lastName)
     .replace(/{email}/g, email)
     .replace('{message}', message)
-
 
   // 1. Email to the user
   await resend.emails.send({
