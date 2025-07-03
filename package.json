@@ -4,7 +4,6 @@
   "main": "",
   "scripts": {
     "dev": "concurrently \"yarn dev:backend\" \"yarn dev:frontend\"",
-    "db:generate": "prisma generate",
     "db:migrate": "prisma migrate dev",
     "dev:frontend": "cd frontend && yarn dev",
     "dev:backend": "cd backend && yarn dev",

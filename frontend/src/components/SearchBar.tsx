@@ -58,14 +58,11 @@ const SearchBar: React.FC = () => {
   };
 
   return (
-    <div className="px-4 sm:px-8">
-      <div className="bg-card w-full rounded-2xl px-6 py-5 shadow-md">
+    <div className="mx-auto w-full max-w-4xl px-4">
+      <div className="bg-card rounded-2xl px-6 py-6 shadow-md">
         <Form form={form}>
           <form onSubmit={form.handleSubmit(onSubmit)}>
             <div className="flex flex-wrap items-center gap-4">
-              {/* Search Icon */}
-              <Search className="text-muted-foreground h-5 w-5" />
-
               {/* Dropdown */}
               <Controller
                 control={form.control}
@@ -82,7 +79,7 @@ const SearchBar: React.FC = () => {
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        {["Freelancer", "Client", "Agency"].map((type) => (
+                        {["Freelancer", "Client"].map((type) => (
                           <SelectItem key={type} value={type}>
                             {type}
                           </SelectItem>
@@ -95,9 +92,6 @@ const SearchBar: React.FC = () => {
 
               {/* Divider */}
               <div className="bg-border h-6 w-px" />
-
-              {/* Tag Selector */}
-              <Search className="text-muted-foreground h-5 w-5" />
               {/* Search Input Box */}
               <Controller
                 control={form.control}
@@ -106,10 +100,11 @@ const SearchBar: React.FC = () => {
                   <FormItem className="min-w-[200px]">
                     <FormControl>
                       <div className="relative">
+                        <Search className="text-muted-foreground absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2" />
                         <Input
                           {...field}
                           placeholder="Search..."
-                          className="bg-muted border-border text-foreground w-full rounded-full border px-4 py-2 text-sm shadow-sm"
+                          className="bg-muted border-border text-foreground w-full rounded-full border py-2 pr-4 pl-10 text-sm shadow-sm"
                         />
                       </div>
                     </FormControl>
@@ -119,9 +114,9 @@ const SearchBar: React.FC = () => {
 
               {/* Selected Tags */}
               <div className="flex flex-wrap gap-2">
-                {selectedTags.map((tag) => (
+                {selectedTags.map((tag, index) => (
                   <div
-                    key={tag}
+                    key={index}
                     className="bg-muted text-muted-foreground flex items-center gap-1 rounded-full px-3 py-1 text-sm"
                   >
                     {tag}
@@ -138,9 +133,9 @@ const SearchBar: React.FC = () => {
 
               {/* All Clickable Tags */}
               <div className="flex flex-wrap gap-2">
-                {predefinedTags.map((tag) => (
+                {predefinedTags.map((tag, index) => (
                   <button
-                    key={tag}
+                    key={index}
                     type="button"
                     onClick={() => handleTagClick(tag)}
                     className="border-border text-muted-foreground hover:bg-muted/80 rounded-full border px-3 py-1 text-sm"
@@ -154,7 +149,7 @@ const SearchBar: React.FC = () => {
               <div className="ml-auto">
                 <Button
                   type="submit"
-                  className="rounded-lg bg-teal-500 px-6 py-2 font-medium text-white hover:bg-teal-600"
+                  className="bg-primary rounded-lg px-6 py-2 font-medium text-white hover:bg-teal-600"
                 >
                   Search
                 </Button>
