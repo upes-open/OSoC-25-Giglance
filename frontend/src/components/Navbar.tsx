@@ -69,6 +69,13 @@ const Navbar: React.FC = () => {
                 Become a Seller
                 <span className="bg-primary absolute inset-x-0 -bottom-1 h-0.5 origin-left scale-x-0 transition-transform duration-200 group-hover:scale-x-100"></span>
               </Link>
+              <Link
+                href="/ContactUs"
+                className="text-foreground hover:text-primary group relative text-sm font-medium whitespace-nowrap transition-colors duration-200 lg:text-base"
+              >
+                Contact-Us
+                <span className="bg-primary absolute inset-x-0 -bottom-1 h-0.5 origin-left scale-x-0 transition-transform duration-200 group-hover:scale-x-100"></span>
+              </Link>
 
               <button
                 onClick={openTermsModal}
