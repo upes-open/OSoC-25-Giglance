@@ -8,6 +8,7 @@ import { useQuery, useMutation } from '@tanstack/react-query'
 import { api } from '@/lib/axios'
 import { toast } from 'sonner'
 import type { NextApiResponse } from 'next';
+import { useUserOnboard } from '@/lib/useUserOnboard';
 
 type BackendRootResponse = {
   message: string;
@@ -18,6 +19,8 @@ const ApiTester = () => {
     name: '',
     email: ''
   });
+
+  useUserOnboard();
 
   // Fetch data from '/' route
   const { data: apiResponse, isLoading: isLoadingApi, error: apiError } = useQuery({
