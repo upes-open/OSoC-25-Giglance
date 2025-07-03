@@ -97,7 +97,7 @@ const SearchBar: React.FC = () => {
                 control={form.control}
                 name="searchQuery"
                 render={({ field }) => (
-                  <FormItem className="min-w-[200px]">
+                  <FormItem className="min-w-[200px] flex-1">
                     <FormControl>
                       <div className="relative">
                         <Search className="text-muted-foreground absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2" />
