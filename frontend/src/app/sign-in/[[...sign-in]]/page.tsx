@@ -13,7 +13,9 @@ import {
 } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { Icons } from '@/components/ui/icons'
+import { FcGoogle } from "react-icons/fc"; 
+import { Github,Loader } from 'lucide-react'
+
 export default function SignInPage() {
   return (
     <div className='grid w-full grow items-center px-4 sm:justify-center'>
@@ -24,7 +26,7 @@ export default function SignInPage() {
               <SignIn.Step name='start'>
                 <Card className='w-full sm:w-96'>
                   <CardHeader>
-                    <CardTitle>Sign in to Acme Co</CardTitle>
+                    <CardTitle>Sign in to Giglance</CardTitle>
                     <CardDescription>
                       Welcome back! Please sign in to continue
                     </CardDescription>
@@ -41,10 +43,10 @@ export default function SignInPage() {
                           <Clerk.Loading scope='provider:github'>
                             {isLoading =>
                               isLoading ? (
-                                <Icons.spinner className='size-4 animate-spin' />
+                                <Loader className='size-4 animate-spin' />
                               ) : (
                                 <>
-                                  <Icons.gitHub className='mr-2 size-4' />
+                                  <Github className='mr-2 size-4' />
                                   GitHub
                                 </>
                               )
@@ -62,10 +64,10 @@ export default function SignInPage() {
                           <Clerk.Loading scope='provider:google'>
                             {isLoading =>
                               isLoading ? (
-                                <Icons.spinner className='size-4 animate-spin' />
+                                <Loader className='size-4 animate-spin' />
                               ) : (
                                 <>
-                                  <Icons.google className='mr-2 size-4' />
+                                  <FcGoogle className='mr-2 size-4' />
                                   Google
                                 </>
                               )
@@ -94,7 +96,7 @@ export default function SignInPage() {
                           <Clerk.Loading>
                             {isLoading => {
                               return isLoading ? (
-                                <Icons.spinner className='size-4 animate-spin' />
+                                <Loader className='size-4 animate-spin' />
                               ) : (
                                 'Continue'
                               )
@@ -149,7 +151,7 @@ export default function SignInPage() {
                           <Clerk.Loading>
                             {isLoading => {
                               return isLoading ? (
-                                <Icons.spinner className='size-4 animate-spin' />
+                                <Loader className='size-4 animate-spin' />
                               ) : (
                                 'Go back'
                               )
@@ -192,7 +194,7 @@ export default function SignInPage() {
                             <Clerk.Loading>
                               {isLoading => {
                                 return isLoading ? (
-                                  <Icons.spinner className='size-4 animate-spin' />
+                                  <Loader className='size-4 animate-spin' />
                                 ) : (
                                   'Continue'
                                 )
@@ -260,7 +262,7 @@ export default function SignInPage() {
                             )}
                           >
                             <Button variant='link' size='sm'>
-                              Didn&apos;t recieve a code? Resend
+                              Didn&apos;t receive a code? Resend
                             </Button>
                           </SignIn.Action>
                         </div>
@@ -273,7 +275,7 @@ export default function SignInPage() {
                             <Clerk.Loading>
                               {isLoading => {
                                 return isLoading ? (
-                                  <Icons.spinner className='size-4 animate-spin' />
+                                  <Loader className='size-4 animate-spin' />
                                 ) : (
                                   'Continue'
                                 )
