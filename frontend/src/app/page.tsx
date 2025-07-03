@@ -41,7 +41,6 @@ const Page: React.FC = () => {
             Connect with top freelancers and clients on our platform! find your
             perfect match for your next project.
           </p>
-          page
         </div>
         <div>
           <ContactSection />
