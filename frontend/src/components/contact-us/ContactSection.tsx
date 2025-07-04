@@ -50,8 +50,8 @@ export default function ContactSection() {
         <div className="max-w-6xl mx-auto">
           {/* Page Header */}
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Get in Touch</h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <h2 className="text-4xl font-bold text-foreground mb-4">Get in Touch</h2>
+            <p className="text-xl text-sub-foreground max-w-2xl mx-auto">
               Have a question about freelancing or need support? We're here to help you succeed on your journey.
             </p>
           </div>
@@ -66,84 +66,84 @@ export default function ContactSection() {
             </div>
 
             {/* Right Column - Form */}
-            <Card className="shadow-xl border-0 bg-white/80 backdrop-blur-sm">
+            <Card className="shadow-xl border border-transparent bg-card/80 backdrop-blur-sm">
               <CardContent className="p-8">
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-4">
                     <div className="space-y-2">
-                      <Label htmlFor="firstName" className="text-sm font-medium text-gray-700">
+                      <Label htmlFor="firstName" className="text-sm font-medium text-name-foreground">
                         First Name *
                       </Label>
                       <Input
                         id="firstName"
                         placeholder="Enter your first name"
-                        className="h-12 border-gray-200 focus:border-blue-500 focus:ring-blue-500"
+                        className="h-12 border-mute focus:border-primary focus:ring-primary"
                         {...register('firstName')}
                       />
                       {errors.firstName && (
-                        <p className="text-sm text-red-500">{errors.firstName.message}</p>
+                        <p className="text-sm text-destructive">{errors.firstName.message}</p>
                       )}
                     </div>
 
                     <div className="space-y-2">
-                      <Label htmlFor="lastName" className="text-sm font-medium text-gray-700">
+                      <Label htmlFor="lastName" className="text-sm font-medium text-name-foreground">
                         Last Name *
                       </Label>
                       <Input
                         id="lastName"
                         placeholder="Enter your last name"
-                        className="h-12 border-gray-200 focus:border-blue-500 focus:ring-blue-500"
+                        className="h-12 border-mute focus:border-primary focus:ring-primary"
                         {...register('lastName')}
                       />
                       {errors.lastName && (
-                        <p className="text-sm text-red-500">{errors.lastName.message}</p>
+                        <p className="text-sm text-destructive">{errors.lastName.message}</p>
                       )}
                     </div>
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="email" className="text-sm font-medium text-gray-700">
+                    <Label htmlFor="email" className="text-sm font-medium text-name-foreground">
                       Email Address *
                     </Label>
                     <div className="relative">
-                      <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                      <Mail className="absolute left-3 top-1/2 -translate-y-1/2 transform text-muted-foreground w-5 h-5" />
                       <Input
                         id="email"
                         type="email"
                         placeholder="Enter your email address"
-                        className="h-12 pl-10 border-gray-200 focus:border-blue-500 focus:ring-blue-500"
+                        className="h-12 border-mute focus:border-primary focus:ring-primary pl-10"
                         {...register('email')}
                       />
                     </div>
                     {errors.email && (
-                      <p className="text-sm text-red-500">{errors.email.message}</p>
+                      <p className="text-sm text-destructive">{errors.email.message}</p>
                     )}
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="message" className="text-sm font-medium text-gray-700">
+                    <Label htmlFor="message" className="text-sm font-medium text-name-foreground">
                       Message *
                     </Label>
                     <Textarea
                       id="message"
                       placeholder="Tell us how we can help you..."
                       rows={5}
-                      className="border-gray-200 focus:border-blue-500 focus:ring-blue-500 resize-none"
+                      className="h-12 border-mute focus:border-primary focus:ring-primary resize-none"
                       {...register('message')}
                     />
                     {errors.message && (
-                      <p className="text-sm text-red-500">{errors.message.message}</p>
+                      <p className="text-sm text-destructive">{errors.message.message}</p>
                     )}
                   </div>
 
                   <Button
                     type="submit"
                     disabled={isSubmitting || mutation.isPending}
-                    className="w-full h-12 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-medium transition-all duration-200 transform hover:scale-105"
+                    className="w-full h-12  text-card font-medium transition-all duration-200 transform hover:scale-105"
                   >
                     {isSubmitting || mutation.isPending ? (
                       <div className="flex items-center space-x-2">
-                        <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                        <div className="w-4 h-4 border-2 border-card border-t-transparent rounded-full animate-spin" />
                         <span>Sending...</span>
                       </div>
                     ) : (
