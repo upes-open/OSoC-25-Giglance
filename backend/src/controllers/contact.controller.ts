@@ -4,8 +4,9 @@ import { z } from 'zod'
 
 import { CONTACT_ADMIN_TEMPLATE, CONTACT_USER_TEMPLATE } from '@/lib/Templates/contactTemplate'
 import { TryCatch } from '@/utils/exceptionHandler'
+import {env} from '@/env'
 
-const resend = new Resend(process.env.RESEND_API_KEY)
+const resend = new Resend(env.RESEND_API_KEY)
 
 const contactSchema = z.object({
   firstName: z.string().min(1, 'First name is required'),

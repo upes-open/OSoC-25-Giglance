@@ -5,7 +5,6 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { contactFormSchema } from './schema'
 import type { ContactFormData } from './schema'
 import { useMutation } from '@tanstack/react-query'
-import axios from 'axios'
 import { toast } from 'react-hot-toast'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -13,6 +12,8 @@ import { Textarea } from '@/components/ui/textarea'
 import { Label } from '@/components/ui/label'
 import { Card, CardContent } from '@/components/ui/card'
 import { Mail, Send, Users, MessageSquare } from 'lucide-react'
+import { api } from '@/lib/axios'
+import Image from 'next/image'
 
 export default function ContactSection() {
   const {
@@ -26,7 +27,7 @@ export default function ContactSection() {
 
   const mutation = useMutation({
     mutationFn: async (data: ContactFormData) => {
-      return axios.post('http://localhost:5000/api/contact', data)
+      return await api.post('/contact', data)
     },
     onSuccess: () => {
       toast.success('Message sent successfully!')
@@ -58,33 +59,10 @@ export default function ContactSection() {
           {/* Contact Section */}
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left Column - Illustration */}
-            <div className="flex flex-col items-center justify-center space-y-8">
-              <div className="relative">
-                <div className="w-80 h-80 rounded-full bg-gradient-to-br from-blue-100 to-purple-100 flex items-center justify-center">
-                  <div className="w-64 h-64 rounded-full bg-white shadow-lg flex items-center justify-center">
-                    <div className="space-y-4 text-center">
-                      <div className="flex justify-center space-x-4">
-                        <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
-                          <Users className="w-6 h-6 text-blue-600" />
-                        </div>
-                        <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center">
-                          <MessageSquare className="w-6 h-6 text-purple-600" />
-                        </div>
-                      </div>
-                      <div className="text-2xl font-bold text-gray-800">Connect</div>
-                      <div className="text-sm text-gray-600">with freelancers</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+            <div className="flex  items-center justify-center space-y-8">
+              <Image src={'/contact.png'} alt={''} width={600} height={600} />
               
-              <div className="text-center space-y-4">
-                <h3 className="text-2xl font-semibold text-gray-800">We're Here to Help</h3>
-                <p className="text-gray-600 max-w-md">
-                  Whether you're a freelancer looking for opportunities or a client seeking talent, 
-                  our team is ready to support your success.
-                </p>
-              </div>
+              
             </div>
 
             {/* Right Column - Form */}

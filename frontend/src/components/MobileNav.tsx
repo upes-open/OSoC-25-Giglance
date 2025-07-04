@@ -87,15 +87,7 @@ export const MobileNav: React.FC<MobileNavProps> = ({
                 Become a Seller
               </span>
             </Link>
-            <Link
-              href="/ContactUs"
-              className="text-foreground hover:bg-accent hover:text-accent-foreground group flex items-center rounded-md px-3 py-2.5 text-left text-sm font-medium transition-colors sm:py-3 sm:text-base"
-              onClick={handleLinkClick}
-            >
-              <span className="transition-transform group-hover:translate-x-0.5">
-                Contact-Us
-              </span>
-            </Link>
+            
           </div>
 
           <div className="border-border my-4 border-t sm:my-6"></div>
