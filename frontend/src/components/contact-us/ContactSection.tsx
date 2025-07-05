@@ -51,7 +51,7 @@ export default function ContactSection() {
           {/* Page Header */}
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-foreground mb-4">Get in Touch</h2>
-            <p className="text-xl text-sub-foreground max-w-2xl mx-auto">
+            <p className="text-xl text-foreground max-w-2xl mx-auto">
               Have a question about freelancing or need support? We're here to help you succeed on your journey.
             </p>
           </div>
@@ -71,7 +71,7 @@ export default function ContactSection() {
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-4">
                     <div className="space-y-2">
-                      <Label htmlFor="firstName" className="text-sm font-medium text-name-foreground">
+                      <Label htmlFor="firstName" className="text-sm font-medium text-foreground">
                         First Name *
                       </Label>
                       <Input
@@ -86,7 +86,7 @@ export default function ContactSection() {
                     </div>
 
                     <div className="space-y-2">
-                      <Label htmlFor="lastName" className="text-sm font-medium text-name-foreground">
+                      <Label htmlFor="lastName" className="text-sm font-medium text-foreground">
                         Last Name *
                       </Label>
                       <Input
@@ -102,7 +102,7 @@ export default function ContactSection() {
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="email" className="text-sm font-medium text-name-foreground">
+                    <Label htmlFor="email" className="text-sm font-medium text-foreground">
                       Email Address *
                     </Label>
                     <div className="relative">
@@ -121,7 +121,7 @@ export default function ContactSection() {
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="message" className="text-sm font-medium text-name-foreground">
+                    <Label htmlFor="message" className="text-sm font-medium text-foreground">
                       Message *
                     </Label>
                     <Textarea
