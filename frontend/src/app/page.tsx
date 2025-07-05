@@ -3,6 +3,7 @@ import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import ApiTester from "@/components/ApiTester";
 import SearchBar from "@/components/SearchBar";
+import ContactSection from "@/components/contact-us/Contactsection";
 
 const Page: React.FC = () => {
   return (
@@ -33,6 +34,9 @@ const Page: React.FC = () => {
         {/* API Testing Section */}
         <div className="mt-12">
           <ApiTester />
+        </div>
+        <div>
+          <ContactSection />
         </div>
       </main>
     </div>
