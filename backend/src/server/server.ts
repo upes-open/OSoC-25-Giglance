@@ -4,6 +4,7 @@ import morgan from 'morgan';
 import helmet from 'helmet';
 import { env } from '@/env';
 import userRoutes from '@/routes/user.routes';
+import contactRoutes from '@/routes/contact.route';
 
 const app = express();
 
@@ -21,6 +22,7 @@ app.get('/api', (_req, res) => {
 });
 
 app.use('/api/users', userRoutes);
+app.use('/api/contact', contactRoutes);
 
 // 404 handler
 app.use((_req, res) => {
