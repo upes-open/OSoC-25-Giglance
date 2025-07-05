@@ -4,6 +4,7 @@ import Link from "next/link";
 import ApiTester from "@/components/ApiTester";
 import SearchBar from "@/components/SearchBar";
 import ContactSection from "@/components/contact-us/Contactsection";
+import BrowseTalentByCategory from '@/components/BrowseCategories/BrowseTalentByCategory';
 
 const Page: React.FC = () => {
   return (
@@ -30,7 +31,10 @@ const Page: React.FC = () => {
             </Button>
           </Link>
         </div>
-
+          {/* Talent Categories Section */}
+        <div className="mt-16 w-full">
+          <BrowseTalentByCategory />
+        </div>
         {/* API Testing Section */}
         <div className="mt-12">
           <ApiTester />
