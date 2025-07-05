@@ -13,7 +13,7 @@ export const getUsers = TryCatch(async (req: Request, res: Response) => {
 });
 
 export const createUser = TryCatch(async (req: Request, res: Response) => {
-  const { id, name, email } = req.body;
+  const { id, name, email }: { id: string; name?: string; email: string } = req.body;
 
   if (!id || !email) {
     return res.status(400).json({ success: false, message: 'Missing required fields' });
