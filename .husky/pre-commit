@@ -15,7 +15,7 @@ echo ""
 if [ -d "frontend" ]; then
   echo "�� [FRONTEND] Checking code quality..."
   cd frontend
-  npx lint-staged
+  yarn lint
   if [ $? -ne 0 ]; then
     echo "❌ Frontend code quality checks failed"
     exit 1
@@ -28,7 +28,7 @@ fi
 if [ -d "backend" ]; then
   echo "⚙️  [BACKEND] Checking code quality..."
   cd backend
-  npx lint-staged
+  yarn lint
   if [ $? -ne 0 ]; then
     echo "❌ Backend code quality checks failed"
     exit 1

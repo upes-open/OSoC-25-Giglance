@@ -22,6 +22,6 @@ export const useUserOnboard = () => {
       }
     };
 
-    syncUser();
+    void syncUser();
   }, [isSignedIn, user]);
 };
