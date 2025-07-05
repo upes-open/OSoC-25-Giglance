@@ -5,7 +5,7 @@ import importPlugin from 'eslint-plugin-import'; // Add import plugin
 
 export default tseslint.config(
   {
-    ignores: ['build/**', 'dist/**', 'node_modules/**', 'coverage/**', './src/lib/prisma/**'],
+    ignores: ['build/**', 'dist/**', 'node_modules/**', 'coverage/**', './src/lib/prisma/**', './src/__tests__'],
   },
   {
     files: ['**/*.{js,mjs,cjs,ts}', 'jest.config.js'],

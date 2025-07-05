@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 interface FormProps<T extends FieldValues> {
   children: React.ReactNode;
   className?: string;
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 function Form<T extends FieldValues>({
@@ -26,13 +26,27 @@ function Form<T extends FieldValues>({
   );
 }
 
-const FormField = ({ name, render }: { name: string; render: Function }) => {
+import type { ControllerRenderProps } from "react-hook-form";
+
+const FormField = ({
+  name,
+  render,
+}: {
+  name: string;
+  render: (props: { field: ControllerRenderProps<FieldValues, string> }) => React.ReactElement;
+}) => {
   const methods = useFormContext();
   return (
     <Controller
       name={name}
       control={methods.control}
-      render={({ field }) => render({ field })}
+      render={({ field }) => {
+        const element = render({ field });
+        if (!React.isValidElement(element)) {
+          throw new Error("FormField render function must return a valid ReactElement.");
+        }
+        return element;
+      }}
     />
   );
 };
