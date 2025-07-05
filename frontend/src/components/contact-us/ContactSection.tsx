@@ -77,7 +77,7 @@ export default function ContactSection() {
                       <Input
                         id="firstName"
                         placeholder="Enter your first name"
-                        className="h-12 border-mute focus:border-primary focus:ring-primary"
+                        className="h-12 border-muted focus:border-primary focus:ring-primary"
                         {...register('firstName')}
                       />
                       {errors.firstName && (
@@ -92,7 +92,7 @@ export default function ContactSection() {
                       <Input
                         id="lastName"
                         placeholder="Enter your last name"
-                        className="h-12 border-mute focus:border-primary focus:ring-primary"
+                        className="h-12 border-muted focus:border-primary focus:ring-primary"
                         {...register('lastName')}
                       />
                       {errors.lastName && (
@@ -111,7 +111,7 @@ export default function ContactSection() {
                         id="email"
                         type="email"
                         placeholder="Enter your email address"
-                        className="h-12 border-mute focus:border-primary focus:ring-primary pl-10"
+                        className="h-12 border-muted focus:border-primary focus:ring-primary pl-10"
                         {...register('email')}
                       />
                     </div>
@@ -128,7 +128,7 @@ export default function ContactSection() {
                       id="message"
                       placeholder="Tell us how we can help you..."
                       rows={5}
-                      className="h-12 border-mute focus:border-primary focus:ring-primary resize-none"
+                      className="h-12 border-muted focus:border-primary focus:ring-primary resize-none"
                       {...register('message')}
                     />
                     {errors.message && (
