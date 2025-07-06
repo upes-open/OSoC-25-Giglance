@@ -2,6 +2,12 @@
 import React, { useState, useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
+import { Inter } from "next/font/google";
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+});
 
 interface HeroHeading {
   lines: string[];
@@ -74,11 +80,20 @@ const HeroSection: React.FC = () => {
     };
   }, []);
 
+  // Original marquee text words
+  const MARQUEE_TEXT: MarqueeText = [
+    "create",
+    "design",
+    "develop",
+    "innovate",
+    "collaborate",
+  ];
+
   // Marquee animation for each row
   useGSAP(() => {
-    const DURATION = 200; // Moderate duration for visible movement
+    const DURATION = 200;
 
-    gsap.killTweensOf(".marquee-text"); // Clear existing animations
+    gsap.killTweensOf(".marquee-text");
 
     marqueeRowsRef.current.forEach((row, index) => {
       if (!row) return;
@@ -86,17 +101,18 @@ const HeroSection: React.FC = () => {
       const inner = row.querySelector(".marquee-text");
       if (!inner) return;
 
-      // Reset any existing transforms
       gsap.set(inner, { clearProps: "all" });
 
-      // Set up text content
-      const originalText = MARQUEE_TEXT.join(" • ");
-      inner.innerHTML = ` • <span>${originalText}</span> • <span>${originalText}</span> • <span>${originalText}</span> •`;
+      const shuffledText = [...MARQUEE_TEXT];
+      for (let i = 0; i < index % MARQUEE_TEXT.length; i++) {
+        shuffledText.push(shuffledText.shift()!);
+      }
 
-      // Get the width of a single span
+      const rowText = shuffledText.join(" • ");
+      inner.innerHTML = ` • <span>${rowText}</span> • <span>${rowText}</span> • <span>${rowText}</span> •`;
+
       const singleSpanWidth = inner.querySelector("span")?.offsetWidth ?? 0;
 
-      // Create simpler, more reliable animation
       if (index % 2 === 0) {
         // Even rows - move left
         gsap.to(inner, {
@@ -105,39 +121,60 @@ const HeroSection: React.FC = () => {
           repeat: -1,
           ease: "linear",
           onRepeat: () => {
-            gsap.set(inner, { x: 0 }); // Reset position instantly on repeat
+            gsap.set(inner, { x: 0 });
           },
         });
       } else {
         // Odd rows - move right
         gsap.fromTo(
           inner,
-          { x: -singleSpanWidth }, // Start position
+          { x: -singleSpanWidth },
           {
             x: 0,
             duration: DURATION,
             repeat: -1,
             ease: "linear",
             onRepeat: () => {
-              gsap.set(inner, { x: -singleSpanWidth }); // Reset position instantly on repeat
+              gsap.set(inner, { x: -singleSpanWidth });
             },
           },
         );
       }
     });
 
-    // Clean up function
     return () => {
       gsap.killTweensOf(".marquee-text");
     };
   }, [rowCount, textSize]);
-  const MARQUEE_TEXT: MarqueeText = [
-    "create",
-    "design",
-    "develop",
-    "innovate",
-    "collaborate",
-  ];
+
+  // GSAP reveal animation
+
+  useGSAP(() => {
+    const marqueeTL = gsap.timeline({ delay: 0.2 });
+
+    marqueeTL.fromTo(
+      marqueeRowsRef.current,
+      {
+        opacity: 0,
+        y: 100,
+      },
+      {
+        opacity: 0.2,
+        y: 0,
+        duration: 1.5,
+        ease: "power2.out",
+        stagger: {
+          amount: 0.6,
+          from: "start",
+        },
+      },
+    );
+
+    return () => {
+      marqueeTL.kill();
+    };
+  }, [rowCount]);
+
   const HERO_ITEMS: HeroItems = {
     heading: {
       lines: ["Freelance Jobs and Talents at Your Fingertips"],
@@ -161,24 +198,25 @@ const HeroSection: React.FC = () => {
             ref={(el) => {
               marqueeRowsRef.current[i] = el;
             }}
-            className="text-primary flex translate-y-[-50%] items-center border-none font-bold uppercase opacity-20"
+            className="text-primary flex translate-y-[-50%] items-center border-none font-bold uppercase italic opacity-20"
             style={{
               fontSize: `${textSize * 1.5}px`,
               minHeight: `${textSize * 1.1}px`,
               overflow: "hidden",
               whiteSpace: "nowrap",
               willChange: "transform",
+              fontFamily: inter.style.fontFamily,
             }}
           >
-            <span className="marquee-text inline-block">
-              {MARQUEE_TEXT.join(" • ")}
-            </span>
+            <span className="marquee-text inline-block"></span>
           </div>
         ))}
       </div>
       {/* Hero background */}
       <div className="absolute inset-0 z-20 flex items-center justify-center">
-        <h1 className="text-primary text-center text-xl">
+        <h1
+          className={`text-primary text-center text-xl ${inter.variable} font-bold tracking-tight uppercase md:text-3xl lg:text-5xl`}
+        >
           {HERO_ITEMS.heading.lines.join(" ")}
         </h1>
       </div>

@@ -9,6 +9,7 @@ import Footer from "@/components/Footer";
 import { ClerkProvider } from "@clerk/nextjs";
 import LocomotiveScrollWrapper from "@/components/LocomotiveScrollWrapper";
 import OverlayReveal from "@/components/OverlayReveal";
+import Cursor from "@/components/Cursor";
 
 export const metadata: Metadata = {
   title: "Giglance - Freelance Platform",
@@ -29,6 +30,7 @@ export default function RootLayout({
       <html lang="en" className={`${geist.variable}`}>
         <body>
           <Providers>
+            <Cursor />
             <OverlayReveal />
             <LocomotiveScrollWrapper>
               <div className="bg-background relative min-h-screen w-full antialiased">
