@@ -49,7 +49,7 @@ const HeroSection: React.FC = () => {
       }
       if (subheadingRef.current) {
         subheadingSplitText.current = new SplitText(subheadingRef.current, {
-          type: "lines,words", // Fixed: removed space after comma
+          type: "lines,words",
           wordsClass: "hero-subheading-word",
           linesClass: "hero-subheading-line",
         });
@@ -61,7 +61,7 @@ const HeroSection: React.FC = () => {
       if (subheadingSplitText.current) subheadingSplitText.current.revert();
     };
   }, []);
-  // Responsive font size
+
   useEffect(() => {
     const updateTextSize = () => {
       const windowHeight = window.innerHeight;
@@ -111,7 +111,6 @@ const HeroSection: React.FC = () => {
     };
   }, []);
 
-  // Original marquee text words
   const MARQUEE_TEXT: MarqueeText = [
     "create",
     "design",
@@ -270,7 +269,6 @@ const HeroSection: React.FC = () => {
     freelancersCount: "Over 12800+ freelancers to complete your projects",
   };
 
-  // Render
   return (
     <section className="relative z-0 h-screen w-full overflow-x-hidden overflow-y-visible">
       {/* Marquee background */}
@@ -297,7 +295,6 @@ const HeroSection: React.FC = () => {
         ))}
       </div>
 
-      {/* Updated Hero Content - Now in flex row with image */}
       <div className="absolute inset-0 z-20 container mx-auto flex h-full items-center justify-center px-4 md:px-8">
         <div className="flex w-full flex-col items-center justify-between gap-8 md:flex-row lg:gap-12">
           {/* Text Content */}
