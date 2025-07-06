@@ -3,6 +3,10 @@ import React, { useState, useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { Inter } from "next/font/google";
+import { Button } from "@/components/ui/button";
+import { SplitText } from "gsap/SplitText";
+import Image from "next/image";
+import stockImage from "public/stock-image.jpg";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -18,18 +22,45 @@ interface HeroItems {
   subheading: string;
   description: string;
   freelancersCount: string;
-  heroImage: string;
 }
 
 type MarqueeText = string[];
 
-gsap.registerPlugin(useGSAP);
+gsap.registerPlugin(useGSAP, SplitText);
 
 const HeroSection: React.FC = () => {
   const [rowCount, setRowCount] = useState(0);
   const [textSize, setTextSize] = useState(0);
   const marqueeRowsRef = useRef<Array<HTMLDivElement | null>>([]);
+  const headingRef = useRef<HTMLHeadingElement>(null);
+  const subheadingRef = useRef<HTMLHeadingElement>(null);
+  const imageRef = useRef<HTMLDivElement>(null);
 
+  const headingSplitText = useRef<SplitText | null>(null);
+  const subheadingSplitText = useRef<SplitText | null>(null);
+  useEffect(() => {
+    // Small timeout to ensure DOM is ready
+    setTimeout(() => {
+      if (headingRef.current) {
+        headingSplitText.current = new SplitText(headingRef.current, {
+          type: "lines",
+          linesClass: "hero-heading-line",
+        });
+      }
+      if (subheadingRef.current) {
+        subheadingSplitText.current = new SplitText(subheadingRef.current, {
+          type: "lines,words", // Fixed: removed space after comma
+          wordsClass: "hero-subheading-word",
+          linesClass: "hero-subheading-line",
+        });
+      }
+    }, 10);
+
+    return () => {
+      if (headingSplitText.current) headingSplitText.current.revert();
+      if (subheadingSplitText.current) subheadingSplitText.current.revert();
+    };
+  }, []);
   // Responsive font size
   useEffect(() => {
     const updateTextSize = () => {
@@ -67,7 +98,7 @@ const HeroSection: React.FC = () => {
       } else if (windowWidth >= 768) {
         count = 7;
       } else {
-        count = 2;
+        count = 7;
       }
       setRowCount(count);
     };
@@ -148,7 +179,6 @@ const HeroSection: React.FC = () => {
   }, [rowCount, textSize]);
 
   // GSAP reveal animation
-
   useGSAP(() => {
     const marqueeTL = gsap.timeline({ delay: 0.2 });
 
@@ -175,6 +205,61 @@ const HeroSection: React.FC = () => {
     };
   }, [rowCount]);
 
+  useGSAP(() => {
+    setTimeout(() => {
+      const headingTL = gsap.timeline({
+        delay: 0.7,
+        defaults: { duration: 0.8, ease: "power2.out" },
+      });
+
+      if (document.querySelectorAll(".hero-subheading-word").length > 0) {
+        gsap.set(".hero-subheading-word", { y: 30, opacity: 0 });
+        headingTL.to(".hero-subheading-word", {
+          y: 0,
+          opacity: 1,
+          duration: 0.6,
+          stagger: 0.2,
+        });
+      }
+
+      if (document.querySelectorAll(".hero-heading-line").length > 0) {
+        gsap.set(".hero-heading-line", { y: 70, opacity: 0 });
+        headingTL.to(
+          ".hero-heading-line",
+          {
+            y: 0,
+            opacity: 1,
+            stagger: 0.1,
+            duration: 0.8,
+          },
+          "-=1",
+        );
+      }
+
+      headingTL.fromTo(
+        ".hero-content-item",
+        { y: 0, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          stagger: 0.1,
+          duration: 0.6,
+        },
+        "-=0.4",
+      );
+
+      // Add image animation
+      if (imageRef.current) {
+        headingTL.fromTo(
+          imageRef.current,
+          { y: 50, opacity: 0 },
+          { y: 0, opacity: 1, duration: 1 },
+          "-=0.8",
+        );
+      }
+    }, 100);
+  }, []);
+
   const HERO_ITEMS: HeroItems = {
     heading: {
       lines: ["Freelance Jobs and Talents at Your Fingertips"],
@@ -183,7 +268,6 @@ const HeroSection: React.FC = () => {
     description:
       "Connect with top freelancers and clients on our platform! Find your perfect match for your next project.",
     freelancersCount: "Over 12800+ freelancers to complete your projects",
-    heroImage: "/removed-bg.png",
   };
 
   // Render
@@ -212,13 +296,68 @@ const HeroSection: React.FC = () => {
           </div>
         ))}
       </div>
-      {/* Hero background */}
-      <div className="absolute inset-0 z-20 flex items-center justify-center">
-        <h1
-          className={`text-primary text-center text-xl ${inter.variable} font-bold tracking-tight uppercase md:text-3xl lg:text-5xl`}
-        >
-          {HERO_ITEMS.heading.lines.join(" ")}
-        </h1>
+
+      {/* Updated Hero Content - Now in flex row with image */}
+      <div className="absolute inset-0 z-20 container mx-auto flex h-full items-center justify-center px-4 md:px-8">
+        <div className="flex w-full flex-col items-center justify-between gap-8 md:flex-row lg:gap-12">
+          {/* Text Content */}
+          <div className="w-full text-center md:w-1/2 md:text-left">
+            <div className="overflow-hidden">
+              <h3
+                ref={subheadingRef}
+                className={`${inter.variable} text-primary mb-2 text-lg font-semibold md:text-xl`}
+              >
+                {HERO_ITEMS.subheading}
+              </h3>
+            </div>
+
+            <div className="overflow-hidden">
+              <h1
+                ref={headingRef}
+                className={`text-primary ${inter.variable} mb-4 text-3xl font-bold tracking-tight uppercase md:mb-6 md:text-4xl lg:text-5xl xl:text-6xl`}
+              >
+                {HERO_ITEMS.heading.lines.join(" ")}
+              </h1>
+            </div>
+
+            <p
+              className={`${inter.variable} hero-content-item mx-auto mb-8 max-w-2xl text-base md:mx-0 md:text-lg`}
+            >
+              {HERO_ITEMS.description}
+            </p>
+
+            <div className="hero-content-item mb-8 flex flex-col justify-center gap-4 sm:flex-row md:justify-start">
+              <Button size="lg" className="text-base">
+                Find Jobs
+              </Button>
+              <Button size="lg" variant="outline" className="text-base">
+                Hire Talent
+              </Button>
+            </div>
+
+            <p
+              className={`${inter.variable} hero-content-item text-sm text-gray-600 md:text-base`}
+            >
+              {HERO_ITEMS.freelancersCount}
+            </p>
+          </div>
+
+          {/* Image */}
+          <div
+            ref={imageRef}
+            className="hero-content-item flex w-full justify-center md:w-1/2 md:justify-end"
+          >
+            <div className="relative aspect-square w-full max-w-md">
+              <Image
+                src={stockImage}
+                alt="Freelance Platform"
+                className="rounded-3xl object-cover shadow-lg"
+                fill
+                priority
+              />
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
