@@ -4396,6 +4396,11 @@ next-themes@^0.4.6:
   resolved "https://registry.yarnpkg.com/next-themes/-/next-themes-0.4.6.tgz#8d7e92d03b8fea6582892a50a928c9b23502e8b6"
   integrity sha512-pZvgD5L0IEvX5/9GWyHMf3m8BKiVQwsCMHfoFosXtXBMnaS0ZnIJ9ST4b4NqLVKDEm8QBxoNNGNaBv2JNF6XNA==
 
+next-view-transitions@^0.3.4:
+  version "0.3.4"
+  resolved "https://registry.yarnpkg.com/next-view-transitions/-/next-view-transitions-0.3.4.tgz#442372e1d55f25d565c063032231980784e224f0"
+  integrity sha512-SSiskenQ8JkEFGzPjvFwC5LGGoqgTxM5dxexkeugxvcXFLpWI2ZUh4IsCURD3ovW+8Ue7xXlrtrpy8b7XR7IwQ==
+
 next@^15.2.3:
   version "15.3.4"
   resolved "https://registry.yarnpkg.com/next/-/next-15.3.4.tgz#7a4863be14c998f1ec1e6d8d4e9e1a1291c8cbe3"
