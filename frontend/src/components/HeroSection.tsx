@@ -42,7 +42,6 @@ const HeroSection: React.FC = () => {
   const giglanceTextSplit = useRef<SplitText | null>(null);
 
   useEffect(() => {
-    // Small timeout to ensure DOM is ready
     setTimeout(() => {
       if (headingRef.current) {
         headingSplitText.current = new SplitText(headingRef.current, {
@@ -241,7 +240,7 @@ const HeroSection: React.FC = () => {
             duration: 0.6,
             stagger: 0.2,
           },
-          "-=0.5",
+          "-=1",
         );
       }
 
@@ -271,7 +270,6 @@ const HeroSection: React.FC = () => {
         "-=1",
       );
 
-      // Add image animation
       if (imageRef.current) {
         headingTL.fromTo(
           imageRef.current,
