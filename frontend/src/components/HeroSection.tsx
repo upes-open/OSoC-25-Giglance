@@ -6,7 +6,6 @@ import { Inter } from "next/font/google";
 import { Button } from "@/components/ui/button";
 import { SplitText } from "gsap/SplitText";
 import Image from "next/image";
-import stockImage from "public/stock-image.jpg";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -332,7 +331,7 @@ const HeroSection: React.FC = () => {
             <div className="overflow-hidden">
               <h1
                 ref={giglanceTextRef}
-                className={`giglance-text overflow-hidden text-7xl font-bold text-black sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl ${inter.variable} leading-none`}
+                className={`giglance-text overflow-hidden text-6xl font-bold whitespace-nowrap text-black sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl ${inter.variable} leading-none`}
               >
                 GIGLANCE
               </h1>
@@ -364,22 +363,6 @@ const HeroSection: React.FC = () => {
             >
               {HERO_ITEMS.freelancersCount}
             </p>
-          </div>
-
-          {/* Image */}
-          <div
-            ref={imageRef}
-            className="hero-content-item flex w-full justify-center md:w-1/2 md:justify-end"
-          >
-            <div className="relative aspect-square w-full max-w-xl">
-              <Image
-                src={stockImage}
-                alt="Freelance Platform"
-                className="rounded-3xl object-cover shadow-lg"
-                fill
-                priority
-              />
-            </div>
           </div>
         </div>
       </div>

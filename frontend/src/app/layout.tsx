@@ -28,11 +28,11 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en" className={`${geist.variable}`}>
-        <body>
-          <Providers>
-            <Cursor />
-            <OverlayReveal />
-            <LocomotiveScrollWrapper>
+        <LocomotiveScrollWrapper>
+          <body>
+            <Providers>
+              <Cursor />
+              <OverlayReveal />
               <div className="bg-background relative min-h-screen w-full antialiased">
                 <div className="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)] [background-size:16px_16px] dark:bg-[radial-gradient(#374151_1px,transparent_1px)]"></div>
                 <div className="relative z-10">
@@ -42,9 +42,9 @@ export default function RootLayout({
                   <Toaster />
                 </div>
               </div>
-            </LocomotiveScrollWrapper>
-          </Providers>
-        </body>
+            </Providers>
+          </body>
+        </LocomotiveScrollWrapper>
       </html>
     </ClerkProvider>
   );

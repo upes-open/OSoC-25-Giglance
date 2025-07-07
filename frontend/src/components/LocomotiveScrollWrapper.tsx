@@ -60,9 +60,5 @@ export default function LocomotiveScrollWrapper({
     };
   }, []);
 
-  return (
-    <div ref={scrollRef} data-scroll-container className="min-h-screen">
-      {children}
-    </div>
-  );
+  return <>{children}</>;
 }
