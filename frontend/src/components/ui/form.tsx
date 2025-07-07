@@ -5,7 +5,7 @@ import { FormProvider, useFormContext, Controller } from "react-hook-form";
 import type { UseFormReturn, FieldValues } from "react-hook-form";
 import { cn } from "@/lib/utils";
 
-interface FormProps<T extends FieldValues> {
+interface FormProps {
   children: React.ReactNode;
   className?: string;
   [key: string]: unknown;
@@ -15,13 +15,13 @@ function Form<T extends FieldValues>({
   children,
   className,
   ...props
-}: FormProps<T> & { form: UseFormReturn<T> }) {
+}: FormProps & { form: UseFormReturn<T> }) {
   const { form, ...rest } = props;
   return (
     <FormProvider {...form}>
-      <form className={cn(className)} {...rest}>
+      <div className={cn(className)} {...rest}>
         {children}
-      </form>
+      </div>
     </FormProvider>
   );
 }
