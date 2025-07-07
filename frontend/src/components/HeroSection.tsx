@@ -2,27 +2,25 @@
 import React, { useState, useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
-import { Inter } from "next/font/google";
+import { Inter, Outfit, DM_Sans } from "next/font/google";
 import { Button } from "@/components/ui/button";
 import { SplitText } from "gsap/SplitText";
+import type { MarqueeText, HeroItems } from "@/types/types";
 
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
 });
 
-interface HeroHeading {
-  lines: string[];
-}
+const outfit = Outfit({
+  subsets: ["latin"],
+  variable: "--font-outfit",
+});
 
-interface HeroItems {
-  heading: HeroHeading;
-  subheading: string;
-  description: string;
-  freelancersCount: string;
-}
-
-type MarqueeText = string[];
+const dmSans = DM_Sans({
+  subsets: ["latin"],
+  variable: "--font-dm-sans",
+});
 
 gsap.registerPlugin(useGSAP, SplitText);
 
@@ -207,7 +205,7 @@ const HeroSection: React.FC = () => {
       if (headingRef.current) {
         headingSplitText.current = new SplitText(headingRef.current, {
           type: "lines",
-          linesClass: "hero-heading-line",
+          linesClass: "hero-heading-line p-0 m-0",
         });
       }
       if (subheadingRef.current) {
@@ -221,7 +219,6 @@ const HeroSection: React.FC = () => {
       if (giglanceTextRef.current) {
         giglanceTextSplit.current = new SplitText(giglanceTextRef.current, {
           type: "chars",
-          linesClass: "hero-giglance-line",
           charsClass: "hero-giglance-chars",
         });
       }
@@ -329,11 +326,16 @@ const HeroSection: React.FC = () => {
       <div className="absolute inset-0 z-20 container mx-auto flex h-full items-center justify-center px-4 md:px-8">
         <div className="flex w-full flex-col items-center justify-between gap-8 md:flex-row lg:gap-12">
           {/* Text Content */}
-          <div className="w-full text-center md:w-full md:pt-[20%] md:text-left lg:pt-0">
+          <div
+            className={`w-full text-center md:w-full md:pt-[20%] md:text-left lg:pt-0`}
+            style={{
+              fontFamily: dmSans.style.fontFamily,
+            }}
+          >
             <div className="overflow-hidden">
               <h3
                 ref={subheadingRef}
-                className={`${inter.variable} text-primary mb-2 text-lg font-semibold md:text-xl`}
+                className="text-primary mb-2 text-lg font-bold md:text-xl"
               >
                 {HERO_ITEMS.subheading}
               </h3>
@@ -341,21 +343,19 @@ const HeroSection: React.FC = () => {
             <div className="overflow-hidden">
               <h1
                 ref={giglanceTextRef}
-                className={`giglance-text overflow-hidden text-[50px] font-bold whitespace-nowrap text-black md:text-[100px] lg:text-[150px] 2xl:text-[200px] ${inter.variable} leading-none`}
+                className={`giglance-text pointer-events-none overflow-hidden text-[50px] leading-none font-black whitespace-nowrap text-black md:text-[100px] lg:text-[150px] 2xl:text-[200px]`}
               >
                 GIGLANCE
               </h1>
               <h1
                 ref={headingRef}
-                className={`text-primary ${inter.variable} mb-4 text-3xl font-bold tracking-tight uppercase md:mb-6 md:w-1/2 md:text-4xl lg:text-5xl xl:text-6xl`}
+                className="text-primary mb-4 text-3xl font-black tracking-tight uppercase md:mb-6 md:w-1/2 md:text-4xl lg:text-5xl xl:text-6xl"
               >
                 {HERO_ITEMS.heading.lines.join(" ")}
               </h1>
             </div>
 
-            <p
-              className={`${inter.variable} hero-content-item mx-auto mb-8 max-w-2xl text-base md:mx-0 md:text-lg`}
-            >
+            <p className="hero-content-item mx-auto mb-8 max-w-2xl text-base font-bold md:mx-0 md:text-lg">
               {HERO_ITEMS.description}
             </p>
 
@@ -368,9 +368,7 @@ const HeroSection: React.FC = () => {
               </Button>
             </div>
 
-            <p
-              className={`${inter.variable} hero-content-item text-sm text-gray-600 md:text-base`}
-            >
+            <p className="hero-content-item text-sm font-bold text-gray-600 md:text-base">
               {HERO_ITEMS.freelancersCount}
             </p>
           </div>
