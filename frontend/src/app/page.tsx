@@ -3,7 +3,9 @@ import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import ApiTester from "@/components/ApiTester";
 import SearchBar from "@/components/SearchBar";
+import BrowseByCategory from "@/components/BrowseByCategory";
 import ContactSection from "@/components/contact-us/Contactsection";
+
 
 const Page: React.FC = () => {
   return (
@@ -22,6 +24,11 @@ const Page: React.FC = () => {
           {/* 🔍 SearchBar Component Here */}
           <div className="w-full max-w-6xl px-2 sm:px-4">
             <SearchBar />
+          </div>
+
+          {/* Browse talent by Category Section */}
+          <div>
+            <BrowseByCategory />
           </div>
           <Link href="/docs" className="inline-block">
             <Button size="lg" className="cursor-pointer">
