@@ -40,7 +40,7 @@ const BrowseByCategory = () => {
       variants={containerVariants}
       initial="hidden"
       animate="visible"
-      className="w-full"
+      className="w-full mt-16"
     >
       {/* Header Section */}
       <motion.div
@@ -202,7 +202,7 @@ const BrowseByCategory = () => {
 
                   <CardContent className="relative z-10 flex h-full flex-col p-6">
                     <motion.div
-                      className="mb-4 flex items-center gap-3"
+                      className="mb-4 flex items-center justify-center gap-3"
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: 0.3 + index * 0.1 }}

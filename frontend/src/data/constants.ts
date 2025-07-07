@@ -46,7 +46,7 @@ export const categories = {
     rating: 4.8,
     skillsCount: 1563,
   },
-  "Data Science & Analytics": {
+  "Data Science": {
     subcategories: ["Data Analysis", "Data Visualization", "Machine Learning"],
     icon: "📊",
     color: "from-secondary to-accent",
