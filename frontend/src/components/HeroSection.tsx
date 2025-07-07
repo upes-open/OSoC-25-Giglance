@@ -5,7 +5,6 @@ import { useGSAP } from "@gsap/react";
 import { Inter } from "next/font/google";
 import { Button } from "@/components/ui/button";
 import { SplitText } from "gsap/SplitText";
-import Image from "next/image";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -33,35 +32,12 @@ const HeroSection: React.FC = () => {
   const marqueeRowsRef = useRef<Array<HTMLDivElement | null>>([]);
   const headingRef = useRef<HTMLHeadingElement>(null);
   const subheadingRef = useRef<HTMLHeadingElement>(null);
-  const imageRef = useRef<HTMLDivElement>(null);
   const giglanceTextRef = useRef<HTMLHeadingElement>(null);
 
   const headingSplitText = useRef<SplitText | null>(null);
   const subheadingSplitText = useRef<SplitText | null>(null);
   const giglanceTextSplit = useRef<SplitText | null>(null);
 
-  useEffect(() => {
-    setTimeout(() => {
-      if (headingRef.current) {
-        headingSplitText.current = new SplitText(headingRef.current, {
-          type: "lines",
-          linesClass: "hero-heading-line",
-        });
-      }
-      if (subheadingRef.current) {
-        subheadingSplitText.current = new SplitText(subheadingRef.current, {
-          type: "lines,words",
-          wordsClass: "hero-subheading-word",
-          linesClass: "hero-subheading-line",
-        });
-      }
-    }, 10);
-
-    return () => {
-      if (headingSplitText.current) headingSplitText.current.revert();
-      if (subheadingSplitText.current) subheadingSplitText.current.revert();
-    };
-  }, []);
   useEffect(() => {
     const updateTextSize = () => {
       const windowHeight = window.innerHeight;
@@ -205,30 +181,61 @@ const HeroSection: React.FC = () => {
   }, [rowCount]);
 
   useGSAP(() => {
-    setTimeout(() => {
+    const timer = setTimeout(() => {
       const headingTL = gsap.timeline({
         delay: 0.7,
         defaults: { duration: 0.8, ease: "power2.out" },
+        onComplete: () => {
+          console.log("🎉 Animation completed - reverting SplitText");
+          // Revert SplitText after animations complete
+          if (headingSplitText.current) {
+            headingSplitText.current.revert();
+            headingSplitText.current = null;
+          }
+
+          if (subheadingSplitText.current) {
+            subheadingSplitText.current.revert();
+            subheadingSplitText.current = null;
+          }
+
+          if (giglanceTextSplit.current) {
+            giglanceTextSplit.current.revert();
+            giglanceTextSplit.current = null;
+          }
+        },
       });
+      if (headingRef.current) {
+        headingSplitText.current = new SplitText(headingRef.current, {
+          type: "lines",
+          linesClass: "hero-heading-line",
+        });
+      }
+      if (subheadingRef.current) {
+        subheadingSplitText.current = new SplitText(subheadingRef.current, {
+          type: "lines,words",
+          wordsClass: "hero-subheading-word",
+          linesClass: "hero-subheading-line",
+        });
+      }
+
       if (giglanceTextRef.current) {
         giglanceTextSplit.current = new SplitText(giglanceTextRef.current, {
           type: "chars",
           linesClass: "hero-giglance-line",
           charsClass: "hero-giglance-chars",
         });
-
-        gsap.set(".hero-giglance-chars", { y: 30, opacity: 0 });
-        headingTL.to(".hero-giglance-chars", {
-          y: 0,
-          opacity: 1,
-          duration: 0.6,
-          ease: "power2.out",
-          stagger: {
-            amount: 0.4,
-            from: "random",
-          },
-        });
       }
+      gsap.set(".hero-giglance-chars", { y: 30, opacity: 0 });
+      headingTL.to(".hero-giglance-chars", {
+        y: 0,
+        opacity: 1,
+        duration: 0.6,
+        ease: "power2.out",
+        stagger: {
+          amount: 0.4,
+          from: "random",
+        },
+      });
       if (document.querySelectorAll(".hero-subheading-word").length > 0) {
         gsap.set(".hero-subheading-word", { y: 30, opacity: 0 });
         headingTL.to(
@@ -268,16 +275,19 @@ const HeroSection: React.FC = () => {
         },
         "-=1",
       );
-
-      if (imageRef.current) {
-        headingTL.fromTo(
-          imageRef.current,
-          { y: 50, opacity: 0 },
-          { y: 0, opacity: 1, duration: 1 },
-          "-=0.8",
-        );
-      }
     }, 100);
+
+    return () => {
+      clearTimeout(timer);
+      gsap.killTweensOf(".hero-giglance-chars");
+      gsap.killTweensOf(".hero-subheading-word");
+      gsap.killTweensOf(".hero-heading-line");
+      gsap.killTweensOf(".hero-content-item");
+
+      headingSplitText.current?.revert();
+      subheadingSplitText.current?.revert();
+      giglanceTextSplit.current?.revert();
+    };
   }, []);
 
   const HERO_ITEMS: HeroItems = {
@@ -291,17 +301,17 @@ const HeroSection: React.FC = () => {
   };
 
   return (
-    <section className="relative z-0 h-screen w-full overflow-x-hidden overflow-y-visible">
+    <section className="relative z-0 min-h-screen w-full overflow-x-hidden overflow-y-visible md:h-screen md:overflow-y-hidden">
       {/* Marquee background */}
-      <div className="bg-primary absolute z-0 h-full w-full opacity-20"></div>
-      <div className="pointer-events-none absolute inset-0 z-10 hidden flex-col justify-start gap-1 overflow-y-hidden select-none md:flex md:flex-col">
+      <div className="bg-background absolute z-0 h-full w-full opacity-100"></div>
+      <div className="pointer-events-none absolute inset-0 z-10 flex-col justify-start gap-1 overflow-y-hidden select-none md:flex md:flex-col">
         {Array.from({ length: rowCount }).map((_, i) => (
           <div
             key={i}
             ref={(el) => {
               marqueeRowsRef.current[i] = el;
             }}
-            className="text-primary flex translate-y-[-50%] items-center border-none font-bold uppercase italic opacity-20"
+            className="text-primary/20 flex translate-y-[-50%] items-center border-none font-bold uppercase italic opacity-20"
             style={{
               fontSize: `${textSize * 1.5}px`,
               minHeight: `${textSize * 1.1}px`,
@@ -319,7 +329,7 @@ const HeroSection: React.FC = () => {
       <div className="absolute inset-0 z-20 container mx-auto flex h-full items-center justify-center px-4 md:px-8">
         <div className="flex w-full flex-col items-center justify-between gap-8 md:flex-row lg:gap-12">
           {/* Text Content */}
-          <div className="w-full pt-[50%] text-center md:w-1/2 md:pt-[20%] md:text-left lg:pt-[0%]">
+          <div className="w-full text-center md:w-full md:pt-[20%] md:text-left lg:pt-0">
             <div className="overflow-hidden">
               <h3
                 ref={subheadingRef}
@@ -331,13 +341,13 @@ const HeroSection: React.FC = () => {
             <div className="overflow-hidden">
               <h1
                 ref={giglanceTextRef}
-                className={`giglance-text overflow-hidden text-6xl font-bold whitespace-nowrap text-black sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl ${inter.variable} leading-none`}
+                className={`giglance-text overflow-hidden text-[50px] font-bold whitespace-nowrap text-black md:text-[100px] lg:text-[150px] 2xl:text-[200px] ${inter.variable} leading-none`}
               >
                 GIGLANCE
               </h1>
               <h1
                 ref={headingRef}
-                className={`text-primary ${inter.variable} mb-4 text-3xl font-bold tracking-tight uppercase md:mb-6 md:text-4xl lg:text-5xl xl:text-6xl`}
+                className={`text-primary ${inter.variable} mb-4 text-3xl font-bold tracking-tight uppercase md:mb-6 md:w-1/2 md:text-4xl lg:text-5xl xl:text-6xl`}
               >
                 {HERO_ITEMS.heading.lines.join(" ")}
               </h1>
