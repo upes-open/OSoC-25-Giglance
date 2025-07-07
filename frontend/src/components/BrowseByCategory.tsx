@@ -102,7 +102,7 @@ const BrowseByCategory = () => {
         </motion.p>
       </motion.div>
 
-      <motion.div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
+      <motion.div className="mx-auto max-w-5xl grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
         {Object.entries(categories).map(
           (
             [category, { subcategories, icon, color, rating, skillsCount }],
