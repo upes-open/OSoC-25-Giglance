@@ -3,7 +3,9 @@ import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import ApiTester from "@/components/ApiTester";
 import SearchBar from "@/components/SearchBar";
+
 import BrowseByCategory from "@/components/BrowseByCategory";
+import ContactSection from "@/components/contact-us/Contactsection";
 import ContactSection from "@/components/contact-us/Contactsection";
 
 

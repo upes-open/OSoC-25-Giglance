@@ -1,6 +1,7 @@
 import prisma from '@/lib/prismaClient';
 import { TryCatch } from '@/utils/exceptionHandler';
 import type { Request, Response } from 'express';
+import type { RequestBody } from '@/types/request';
 
 export const getUsers = TryCatch(async (req: Request, res: Response) => {
   const users = await prisma.user.findMany();
@@ -13,7 +14,7 @@ export const getUsers = TryCatch(async (req: Request, res: Response) => {
 });
 
 export const createUser = TryCatch(async (req: Request, res: Response) => {
-  const { id, name, email } = req.body;
+  const { id, name, email } = req.body as RequestBody;
 
   if (!id || !email) {
     return res.status(400).json({ success: false, message: 'Missing required fields' });

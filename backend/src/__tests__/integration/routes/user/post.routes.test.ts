@@ -38,7 +38,7 @@ describe('POST /api/users', () => {
       message: 'User created successfully'
     });
 
-    expect(prisma.user.create).toHaveBeenCalledWith({
+    void expect(prisma.user.create).toHaveBeenCalledWith({
       data: mockUserData.valid
     });
   });
