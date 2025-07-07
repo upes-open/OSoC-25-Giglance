@@ -59,7 +59,6 @@ const BrowseByCategory = () => {
             <motion.span
               key={index}
               className="from-foreground via-primary to-foreground mr-3 inline-block bg-gradient-to-r bg-clip-text text-transparent"
-              whileHover={wordAnimationVariants.title.whileHover}
               initial={wordAnimationVariants.title.initial}
               animate={wordAnimationVariants.title.animate}
               transition={{
@@ -86,7 +85,6 @@ const BrowseByCategory = () => {
               <motion.span
                 key={index}
                 className="mr-2 inline-block"
-                whileHover={wordAnimationVariants.subtitle.whileHover}
                 initial={wordAnimationVariants.subtitle.initial}
                 animate={wordAnimationVariants.subtitle.animate}
                 transition={{
