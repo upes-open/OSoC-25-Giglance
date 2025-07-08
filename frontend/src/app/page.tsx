@@ -1,10 +1,13 @@
 import SearchBar from "@/components/SearchBar";
 import BrowseByCategory from "@/components/BrowseByCategory";
 import ContactSection from "@/components/contact-us/Contactsection";
+
 import HeroSection from "@/components/HeroSection";
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react'
+import { FaqAccordion } from "@/components/FaqAccordion";
+
 
 const Page: React.FC = () => {
   return (
@@ -23,14 +26,16 @@ const Page: React.FC = () => {
           <div>
             <BrowseByCategory />
           </div>
-          <Link href="/docs" className="inline-block">
-            <Button size="lg" className="cursor-pointer">
-              Read Docs
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
-          </Link>
         </div>
-        {/* Blue outlined text box */}
+
+
+        
+        {/* FAQ Section */}
+        <div className="mt-16 w-full max-w-6xl px-4">
+          <FaqAccordion />
+        </div>
+        
+        
         <div>
           <ContactSection />
         </div>
