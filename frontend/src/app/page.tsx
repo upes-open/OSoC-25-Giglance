@@ -2,7 +2,9 @@ import SearchBar from "@/components/SearchBar";
 import BrowseByCategory from "@/components/BrowseByCategory";
 import ContactSection from "@/components/contact-us/Contactsection";
 import HeroSection from "@/components/HeroSection";
-
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
+import { ArrowRight } from 'lucide-react'
 
 const Page: React.FC = () => {
   return (
