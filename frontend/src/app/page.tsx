@@ -1,6 +1,8 @@
 import SearchBar from "@/components/SearchBar";
+import BrowseByCategory from "@/components/BrowseByCategory";
 import ContactSection from "@/components/contact-us/Contactsection";
 import HeroSection from "@/components/HeroSection";
+
 
 const Page: React.FC = () => {
   return (
@@ -15,8 +17,17 @@ const Page: React.FC = () => {
           <div className="w-full max-w-6xl px-2 sm:px-4">
             <SearchBar />
           </div>
+          {/* Browse talent by Category Section */}
+          <div>
+            <BrowseByCategory />
+          </div>
+          <Link href="/docs" className="inline-block">
+            <Button size="lg" className="cursor-pointer">
+              Read Docs
+              <ArrowRight className="ml-2 h-4 w-4" />
+            </Button>
+          </Link>
         </div>
-
         {/* Blue outlined text box */}
         <div>
           <ContactSection />
