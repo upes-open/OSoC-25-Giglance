@@ -6,8 +6,8 @@ import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { MobileNav } from "@/components/MobileNav";
 import { MarkdownModal } from "@/components/MarkdownModal";
-import { useRouter } from 'next/navigation'
-import { useUser, UserButton } from '@clerk/nextjs'
+import { useRouter } from "next/navigation";
+import { useUser, UserButton } from "@clerk/nextjs";
 
 const Navbar: React.FC = () => {
   const [isTermsOpen, setIsTermsOpen] = useState(false);
@@ -18,8 +18,8 @@ const Navbar: React.FC = () => {
 
   const openPrivacyModal = () => setIsPrivacyOpen(true);
   const closePrivacyModal = () => setIsPrivacyOpen(false);
-  const router = useRouter()
-  const { isSignedIn, isLoaded } = useUser()
+  const router = useRouter();
+  const { isSignedIn, isLoaded } = useUser();
 
   return (
     <>
@@ -86,10 +86,10 @@ const Navbar: React.FC = () => {
                 <span className="bg-muted-foreground absolute inset-x-0 -bottom-1 h-0.5 origin-left scale-x-0 transition-transform duration-200 group-hover:scale-x-100"></span>
               </button>
 
-              <div className='flex items-center gap-4'>
+              <div className="flex items-center gap-4">
                 {isLoaded ? (
                   isSignedIn ? (
-                    <UserButton afterSignOutUrl='/' />
+                    <UserButton afterSignOutUrl="/" />
                   ) : (
                     <div className="border-border ml-4 flex items-center space-x-2 border-l pl-4">
                       <Button
@@ -97,7 +97,7 @@ const Navbar: React.FC = () => {
                         size="sm"
                         title="Coming soon - once Clerk integration is complete"
                         className="px-3 text-xs font-medium"
-                        onClick={() => router.push('/sign-up')}
+                        onClick={() => router.push("/sign-up")}
                       >
                         Sign Up
                       </Button>
@@ -106,14 +106,16 @@ const Navbar: React.FC = () => {
                         size="sm"
                         title="Coming soon - once Clerk integration is complete"
                         className="px-3 text-xs font-medium"
-                        onClick={() => router.push('/sign-in')}
+                        onClick={() => router.push("/sign-in")}
                       >
                         Login
                       </Button>
                     </div>
                   )
                 ) : (
-                  <span className='text-sm text-muted-foreground'>Loading...</span>
+                  <span className="text-muted-foreground text-sm">
+                    Loading...
+                  </span>
                 )}
               </div>
             </div>
@@ -144,10 +146,10 @@ const Navbar: React.FC = () => {
                 <span className="bg-primary absolute inset-x-0 -bottom-1 h-0.5 origin-left scale-x-0 transition-transform duration-200 group-hover:scale-x-100"></span>
               </Link>
 
-              <div className='flex items-center gap-4'>
+              <div className="flex items-center gap-4">
                 {isLoaded ? (
                   isSignedIn ? (
-                    <UserButton afterSignOutUrl='/' />
+                    <UserButton afterSignOutUrl="/" />
                   ) : (
                     <div className="border-border ml-4 flex items-center space-x-2 border-l pl-4">
                       <Button
@@ -156,7 +158,7 @@ const Navbar: React.FC = () => {
                         disabled
                         title="Coming soon - once Clerk integration is complete"
                         className="px-3 text-xs font-medium"
-                        onClick={() => router.push('/sign-up')}
+                        onClick={() => router.push("/sign-up")}
                       >
                         Sign Up
                       </Button>
@@ -166,14 +168,16 @@ const Navbar: React.FC = () => {
                         disabled
                         title="Coming soon - once Clerk integration is complete"
                         className="px-3 text-xs font-medium"
-                        onClick={() => router.push('/sign-in')}
+                        onClick={() => router.push("/sign-in")}
                       >
                         Login
                       </Button>
                     </div>
                   )
                 ) : (
-                  <span className='text-sm text-muted-foreground'>Loading...</span>
+                  <span className="text-muted-foreground text-sm">
+                    Loading...
+                  </span>
                 )}
               </div>
             </div>
@@ -201,7 +205,7 @@ const Navbar: React.FC = () => {
                 disabled
                 title="Coming soon - once Clerk integration is complete"
                 className="px-2 text-xs font-medium"
-                onClick={() => router.push('/sign-in')}
+                onClick={() => router.push("/sign-in")}
               >
                 Login
               </Button>

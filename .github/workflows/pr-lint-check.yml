@@ -35,7 +35,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: 22
 
       - name: Install Frontend Dependencies
         run: |
@@ -73,9 +73,6 @@ jobs:
     steps:
       - name: Checkout base branch (safe)
         uses: actions/checkout@v3
-
-      - name: Set up GitHub CLI
-        uses: cli/cli-action@v1
 
       - name: Post result
         run: |
