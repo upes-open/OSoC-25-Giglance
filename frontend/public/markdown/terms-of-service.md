@@ -1,7 +1,8 @@
 # Giglance Terms of Service
+
 _Last updated: July 2, 2025_
 
-PLEASE READ THESE TERMS OF SERVICE (“**Terms**”) CAREFULLY. They constitute a legally binding agreement between you (“**User**” or “*you*”) and Giglance (“**Giglance**”, “*we*”, “*our*”, or “*us*”) governing your access to and use of **https://giglance.com** and any related services that link to these Terms (collectively, the “**Services**”).
+PLEASE READ THESE TERMS OF SERVICE (“**Terms**”) CAREFULLY. They constitute a legally binding agreement between you (“**User**” or “_you_”) and Giglance (“**Giglance**”, “_we_”, “_our_”, or “_us_”) governing your access to and use of **https://giglance.com** and any related services that link to these Terms (collectively, the “**Services**”).
 
 By accessing or using the Services, you agree to be bound by these Terms and our Privacy Policy. If you do not agree, you must not access or use the Services.
 
@@ -17,12 +18,12 @@ You may need to create an account to access certain features. You agree to provi
 
 You agree not to:
 
-* Violate any applicable law or regulation  
-* Infringe the intellectual property or other rights of any person  
-* Post false, misleading, or fraudulent content or bids  
-* Transmit viruses, malware, or other harmful code  
-* Interfere with or disrupt the integrity or performance of the Services  
-* Attempt to gain unauthorized access to any part of the Services or related systems  
+- Violate any applicable law or regulation
+- Infringe the intellectual property or other rights of any person
+- Post false, misleading, or fraudulent content or bids
+- Transmit viruses, malware, or other harmful code
+- Interfere with or disrupt the integrity or performance of the Services
+- Attempt to gain unauthorized access to any part of the Services or related systems
 
 ## 4. User Content
 
@@ -69,10 +70,10 @@ These Terms are governed by the laws of India without regard to its conflict‑o
 
 ## 13. Miscellaneous
 
-* **Entire Agreement** — These Terms and the Privacy Policy constitute the entire agreement between you and Giglance.  
-* **Severability** — If any provision is found invalid or unenforceable, the remaining provisions shall remain in full force and effect.  
-* **No Waiver** — Our failure to enforce any right or provision shall not constitute a waiver of such right or provision.  
-* **Assignment** — You may not assign or transfer your rights under these Terms without our prior written consent. We may freely assign our rights.
+- **Entire Agreement** — These Terms and the Privacy Policy constitute the entire agreement between you and Giglance.
+- **Severability** — If any provision is found invalid or unenforceable, the remaining provisions shall remain in full force and effect.
+- **No Waiver** — Our failure to enforce any right or provision shall not constitute a waiver of such right or provision.
+- **Assignment** — You may not assign or transfer your rights under these Terms without our prior written consent. We may freely assign our rights.
 
 ## 14. Contact Us
 
