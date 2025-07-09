@@ -12,7 +12,7 @@
     "build": "yarn build:backend && yarn build:frontend",
     "build:backend": "cd backend && yarn build",
     "build:frontend": "cd frontend && yarn build",
-    "start": "concurrently \"yarn start:backend\" \"yarn start:frontend\"",
+    "start": "yarn start:backend && yarn start:frontend",
     "start:backend": "cd backend && yarn start",
     "start:frontend": "cd frontend && yarn start",
     "ts-check": "yarn ts-check:backend && yarn ts-check:frontend",
