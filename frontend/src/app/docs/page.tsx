@@ -78,7 +78,7 @@ export default function Docs() {
       setSections(loadedDocs);
     }
 
-    loadDocs();
+    void loadDocs();
   }, []);
 
   const currentDoc =
@@ -276,7 +276,7 @@ export default function Docs() {
                     typeof src === "string" ? (
                       <Image
                         src={src}
-                        alt={alt || "image"}
+                        alt={alt ?? "image"}
                         width={800}
                         height={400}
                         className="h-auto max-w-full rounded-lg"
