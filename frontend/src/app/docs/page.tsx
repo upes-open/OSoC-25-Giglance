@@ -46,7 +46,7 @@ Sorry, there was an error loading the ${filename} file.
 
 ## Common Issues
 
-- Ensure the ${filename} file exists in the \`/public/docs\` folder
+- Ensure the ${filename} file exists
 - Check file permissions
 - Make sure the path is correct`;
   }
@@ -54,7 +54,7 @@ Sorry, there was an error loading the ${filename} file.
 
 async function getAllDocuments(): Promise<DocumentSection[]> {
   const documents = [
-    { id: "about", title: "About the Project", filename: "README.md" },
+    { id: "about", title: "About the Project", filename: "ABOUT.md" },
     {
       id: "contributing",
       title: "Contribution Guide",
