@@ -18,7 +18,7 @@ import { Github,Loader } from 'lucide-react'
 
 export default function SignInPage() {
   return (
-    <div className='grid w-full grow items-center px-4 sm:justify-center'>
+    <div className='grid min-h-screen w-full items-center justify-center px-4'>
       <SignIn.Root>
         <Clerk.Loading>
           {isGlobalLoading => (

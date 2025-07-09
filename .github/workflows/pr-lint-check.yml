@@ -11,13 +11,11 @@ permissions:
   pull-requests: write
 
 jobs:
-  # Unprivileged linting job
   lint:
     name: Run Lint Checks
     runs-on: ubuntu-latest
 
     env:
-      # Dummy env vars to pass zod validation
       NODE_ENV: development
       CLERK_SECRET_KEY: dummy_secret_key
       NEXT_PUBLIC_SERVER_API_URL: http://localhost:3000/api
@@ -59,13 +57,11 @@ jobs:
           cd backend
           yarn lint
 
-  # Privileged job for posting comment / closing PR
   notify:
     name: Notify Lint Result
     needs: lint
     runs-on: ubuntu-latest
-    if: always()
-
+    if: github.event_name == 'pull_request_target'
     permissions:
       pull-requests: write
       contents: write
