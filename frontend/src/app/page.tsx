@@ -1,6 +1,13 @@
 import SearchBar from "@/components/SearchBar";
+import BrowseByCategory from "@/components/BrowseByCategory";
 import ContactSection from "@/components/contact-us/Contactsection";
+
 import HeroSection from "@/components/HeroSection";
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
+import { ArrowRight } from 'lucide-react'
+import { FaqAccordion } from "@/components/FaqAccordion";
+
 
 const Page: React.FC = () => {
   return (
@@ -15,9 +22,20 @@ const Page: React.FC = () => {
           <div className="w-full max-w-6xl px-2 sm:px-4">
             <SearchBar />
           </div>
+          {/* Browse talent by Category Section */}
+          <div>
+            <BrowseByCategory />
+          </div>
         </div>
 
-        {/* Blue outlined text box */}
+
+        
+        {/* FAQ Section */}
+        <div className="mt-16 w-full max-w-6xl px-4">
+          <FaqAccordion />
+        </div>
+        
+        
         <div>
           <ContactSection />
         </div>
