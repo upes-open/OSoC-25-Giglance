@@ -61,11 +61,17 @@ export default function Docs() {
           if (!res.ok) throw new Error("Not found");
           const text = await res.text();
           loadedDocs.push({ ...doc, content: text });
-        } catch (err) {
-          loadedDocs.push({
-            ...doc,
-            content: `# Error loading ${doc.filename}\n\nPlease ensure the file exists in /public/markdown.`,
-          });
+        } catch (error) {
+          console.error(`Error reading ${__filename}:`, error);
+          return `# Error loading ${__filename}
+      
+      Sorry, there was an error loading the ${__filename} file.
+      
+      ## Common Issues
+      
+      - Ensure the ${__filename} file exists in the project root
+      - Check file permissions
+      - Make sure the path is correct`;
         }
       }
 
