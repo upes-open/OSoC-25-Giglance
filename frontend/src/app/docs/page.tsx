@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
-
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import remarkToc from "remark-toc";
@@ -48,8 +47,8 @@ const documents = [
 ];
 
 export default function Docs() {
-  const [sections, setSections] = useState<DocumentSection[]>([]);
   const searchParams = useSearchParams();
+  const [sections, setSections] = useState<DocumentSection[]>([]);
   const currentSection = searchParams.get("section") ?? "about";
 
   useEffect(() => {
