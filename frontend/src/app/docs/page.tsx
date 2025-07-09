@@ -1,7 +1,5 @@
-"use client";
-
-import { useEffect, useState } from "react";
-import { useSearchParams } from "next/navigation";
+import fs from "fs/promises";
+import path from "path";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import remarkToc from "remark-toc";
@@ -15,7 +13,6 @@ import { CodeBlock } from "@/components/ui/codeblock";
 type DocumentSection = {
   id: string;
   title: string;
-  filename: string;
   content: string;
 };
 
@@ -36,59 +33,62 @@ function createSlug(text: unknown): string {
   return "";
 }
 
-const documents = [
-  { id: "about", title: "About the Project", filename: "README.md" },
-  {
-    id: "contributing",
-    title: "Contribution Guide",
-    filename: "CONTRIBUTING.md",
-  },
-  { id: "conduct", title: "Code of Conduct", filename: "CODE_OF_CONDUCT.md" },
-];
+async function getDocumentContent(filename: string): Promise<string> {
+  try {
+    const filePath = path.join(process.cwd(), "public", "markdown", filename);
+    const content = await fs.readFile(filePath, "utf8");
+    return content;
+  } catch (error) {
+    console.error(`Error reading ${filename}:`, error);
+    return `# Error loading ${filename}
 
-export default function Docs() {
-  const searchParams = useSearchParams();
-  const [sections, setSections] = useState<DocumentSection[]>([]);
-  const currentSection = searchParams.get("section") ?? "about";
+Sorry, there was an error loading the ${filename} file.
 
-  useEffect(() => {
-    async function loadDocs() {
-      const loadedDocs: DocumentSection[] = [];
+## Common Issues
 
-      for (const doc of documents) {
-        try {
-          const res = await fetch(`/markdown/${doc.filename}`);
-          if (!res.ok) throw new Error("Not found");
-          const text = await res.text();
-          loadedDocs.push({ ...doc, content: text });
-        } catch (error) {
-          console.error(`Error reading ${__filename}:`, error);
-          return `# Error loading ${__filename}
-      
-      Sorry, there was an error loading the ${__filename} file.
-      
-      ## Common Issues
-      
-      - Ensure the ${__filename} file exists in the project root
-      - Check file permissions
-      - Make sure the path is correct`;
-        }
-      }
-
-      setSections(loadedDocs);
-    }
-
-    void loadDocs();
-  }, []);
-
-  const currentDoc =
-    sections.find((s) => s.id === currentSection) ?? sections[0];
-
-  if (!sections.length) {
-    return (
-      <div className="text-muted-foreground p-10">Loading documentation...</div>
-    );
+- Ensure the ${filename} file exists in the \`/public/docs\` folder
+- Check file permissions
+- Make sure the path is correct`;
   }
+}
+
+async function getAllDocuments(): Promise<DocumentSection[]> {
+  const documents = [
+    { id: "about", title: "About the Project", filename: "README.md" },
+    {
+      id: "contributing",
+      title: "Contribution Guide",
+      filename: "CONTRIBUTING.md",
+    },
+    {
+      id: "conduct",
+      title: "Code of Conduct",
+      filename: "CODE_OF_CONDUCT.md",
+    },
+  ];
+
+  const sections: DocumentSection[] = [];
+
+  for (const doc of documents) {
+    const content = await getDocumentContent(doc.filename);
+    sections.push({
+      id: doc.id,
+      title: doc.title,
+      content: content,
+    });
+  }
+
+  return sections;
+}
+
+type SearchParams = Promise<Record<string, string | string[] | undefined>>;
+
+export default async function Docs(props: { searchParams: SearchParams }) {
+  const documents = await getAllDocuments();
+  const searchparams = await props.searchParams;
+  const currentSection = searchparams.section ?? "about";
+  const currentDocument =
+    documents.find((doc) => doc.id === currentSection) ?? documents[0];
 
   return (
     <div className="min-h-screen bg-transparent">
@@ -99,8 +99,10 @@ export default function Docs() {
             <h2 className="text-foreground mb-6 text-xl font-bold">
               Documentation
             </h2>
+
+            {/* Document Navigation */}
             <nav className="space-y-2">
-              {sections.map((doc) => (
+              {documents.map((doc) => (
                 <Link
                   key={doc.id}
                   href={`/docs?section=${doc.id}`}
@@ -108,7 +110,7 @@ export default function Docs() {
                     currentSection === doc.id
                       ? "bg-primary text-primary-foreground"
                       : "text-muted-foreground hover:text-foreground hover:bg-accent"
-                  }`}
+                  } `}
                 >
                   {doc.title}
                 </Link>
@@ -131,7 +133,7 @@ export default function Docs() {
                 <span className="mb-4 text-lg text-gray-600">Back to Home</span>
               </Link>
               <div className="flex flex-wrap gap-2">
-                {sections.map((doc) => (
+                {documents.map((doc) => (
                   <Link
                     key={doc.id}
                     href={`/docs?section=${doc.id}`}
@@ -139,7 +141,7 @@ export default function Docs() {
                       currentSection === doc.id
                         ? "bg-primary text-primary-foreground border-primary"
                         : "bg-card text-muted-foreground hover:text-foreground hover:bg-accent border-border"
-                    }`}
+                    } `}
                   >
                     {doc.title}
                   </Link>
@@ -181,7 +183,7 @@ export default function Docs() {
                     return (
                       <h2
                         id={id}
-                        className="text-foreground border-border mt-12 mb-4 border-b pb-2 text-3xl font-bold"
+                        className="border-border text-foreground mt-12 mb-4 border-b pb-2 text-3xl font-bold"
                         {...props}
                       >
                         {children}
@@ -272,23 +274,28 @@ export default function Docs() {
                   td: ({ ...props }) => (
                     <td className="border-border border px-4 py-2" {...props} />
                   ),
-                  img: ({ alt, src }) =>
-                    typeof src === "string" ? (
-                      <Image
-                        src={src}
-                        alt={alt ?? "image"}
-                        width={800}
-                        height={400}
-                        className="h-auto max-w-full rounded-lg"
-                      />
-                    ) : (
+                  img: ({ alt, src }) => {
+                    if (typeof src === "string") {
+                      return (
+                        <Image
+                          src={src}
+                          alt={alt! || "image"}
+                          width={800}
+                          height={400}
+                          className="h-auto max-w-full rounded-lg"
+                        />
+                      );
+                    }
+                    // Fallback for non-string src (shouldn't happen in markdown)
+                    return (
                       <span className="text-muted-foreground">
                         Image could not be loaded
                       </span>
-                    ),
+                    );
+                  },
                 }}
               >
-                {currentDoc ? currentDoc.content : null}
+                {currentDocument?.content ?? ""}
               </ReactMarkdown>
             </article>
           </div>
