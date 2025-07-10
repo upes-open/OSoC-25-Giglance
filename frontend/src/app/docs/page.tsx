@@ -35,9 +35,25 @@ function createSlug(text: unknown): string {
 
 async function getDocumentContent(filename: string): Promise<string> {
   try {
-    const filePath = path.join(process.cwd(), "public", "markdown", filename);
-    const content = await fs.readFile(filePath, "utf8");
-    return content;
+    // Try multiple possible paths
+    const possiblePaths = [
+      path.join(process.cwd(), "public", "markdown", filename),
+      path.join(process.cwd(), "public", "markdown", filename.toLowerCase()),
+      path.join(process.cwd(), "public", "markdown", filename.toUpperCase()),
+    ];
+
+    for (const filePath of possiblePaths) {
+      try {
+        const content = await fs.readFile(filePath, "utf8");
+        return content;
+      } catch (error) {
+        // Continue to next path
+        continue;
+      }
+    }
+
+    // If all paths fail, throw error
+    throw new Error(`File not found: ${filename}`);
   } catch (error) {
     console.error(`Error reading ${filename}:`, error);
     return `# Error loading ${filename}
@@ -46,10 +62,25 @@ Sorry, there was an error loading the ${filename} file.
 
 ## Common Issues
 
-- Ensure the ${filename} file exists
+- Ensure the ${filename} file exists in public/markdown/
 - Check file permissions
-- Make sure the path is correct`;
+- Make sure the path is correct
+- Verify file name case sensitivity
+
+## Debug Info
+- Current working directory: ${process.cwd()}
+- Attempted filename: ${filename}
+- Error: ${error instanceof Error ? error.message : "Unknown error"}`;
   }
+}
+
+// Generate static props at build time
+export async function generateStaticParams() {
+  return [
+    { section: "about" },
+    { section: "contributing" },
+    { section: "conduct" },
+  ];
 }
 
 async function getAllDocuments(): Promise<DocumentSection[]> {
