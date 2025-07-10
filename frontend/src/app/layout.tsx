@@ -10,7 +10,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import LocomotiveScrollWrapper from "@/components/LocomotiveScrollWrapper";
 import OverlayReveal from "@/components/OverlayReveal";
 import Cursor from "@/components/Cursor";
-import { ThemeProvider } from "@/components/theme-provider"
+import { ThemeProvider } from "@/providers/theme-provider"
 
 export const metadata: Metadata = {
   title: "Giglance - Freelance Platform",
