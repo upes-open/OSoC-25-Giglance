@@ -40,7 +40,7 @@
     "next-view-transitions": "^0.3.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-hook-form": "^7.59.0",
+    "react-hook-form": "^7.60.0",
     "react-icons": "^5.5.0",
     "react-markdown": "^10.1.0",
     "rehype-autolink-headings": "^7.1.0",
@@ -50,7 +50,7 @@
     "shadcn": "^2.7.0",
     "sonner": "^2.0.5",
     "tailwind-merge": "^3.3.1",
-    "zod": "^3.24.2"
+    "zod": "^4.0.2"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.1",
