@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { useForm, Controller } from "react-hook-form";
+import { useForm, Controller, type Resolver, type SubmitHandler } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 // Update these imports to match your actual shadcn/ui component paths
@@ -69,7 +69,7 @@ const SellerRegisterPage = () => {
     reset,
     formState: { errors },
   } = useForm<FormValues>({
-    resolver: zodResolver(formSchema) as any, // Type workaround for zodResolver
+    resolver: zodResolver(formSchema) as Resolver<FormValues>,
     defaultValues: {
       skills: [],
       subcategories: [],
@@ -80,16 +80,15 @@ const SellerRegisterPage = () => {
     },
   });
 
-  const onSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
-    e.preventDefault();
-    setOpen(true);
-    reset();
-  };
+const onSubmit: SubmitHandler<FormValues> = (data) => {
+  setOpen(true);
+  reset();
+};
 
   return (
     <div className="max-w-2xl mx-auto p-6 bg-white rounded-lg shadow-md mt-8 mb-16">
       <h1 className="text-3xl font-bold mb-6 text-center">Become a Freelancer on Giglance</h1>
-      <form onSubmit={handleSubmit(() => setOpen(true))} className="space-y-8">
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
         {/* Personal Details */}
         <section>
           <h2 className="text-xl font-semibold mb-4">Personal Details</h2>
@@ -140,7 +139,7 @@ const SellerRegisterPage = () => {
                   />
                 )}
               />
-              {errors.skills && <p className="text-red-500 text-xs">{errors.skills.message as string}</p>}
+              {errors.skills && <p className="text-red-500 text-xs">{errors.skills.message!}</p>}
             </div>
             <div>
               <label className="font-medium">Years of Experience *</label>
@@ -218,7 +217,7 @@ const SellerRegisterPage = () => {
                 render={({ field }) => (
                   <Input
                     placeholder="Select subcategories (comma separated)"
-                    value={field.value?.join(", ") || ""}
+                    value={field.value?.join(", ") ?? ""}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => field.onChange(e.target.value.split(",").map((s: string) => s.trim()))}
                   />
                 )}
@@ -233,7 +232,7 @@ const SellerRegisterPage = () => {
                 render={({ field }) => (
                   <Input
                     placeholder="Select project types (comma separated)"
-                    value={field.value?.join(", ") || ""}
+                    value={field.value?.join(", ") ?? ""}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => field.onChange(e.target.value.split(",").map((s: string) => s.trim()))}
                   />
                 )}
