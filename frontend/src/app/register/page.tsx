@@ -86,7 +86,7 @@ const onSubmit: SubmitHandler<FormValues> = (data) => {
 };
 
   return (
-    <div className="max-w-2xl mx-auto p-6 bg-white rounded-lg shadow-md mt-8 mb-16">
+    <div className="max-w-2xl mx-auto p-6 bg-background rounded-lg shadow-md mt-8 mb-16">
       <h1 className="text-3xl font-bold mb-6 text-center">Become a Freelancer on Giglance</h1>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
         {/* Personal Details */}

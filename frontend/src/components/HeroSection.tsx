@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
-import { Inter, Outfit, DM_Sans } from "next/font/google";
+import { Inter,  DM_Sans } from "next/font/google";
 import { Button } from "@/components/ui/button";
 import { SplitText } from "gsap/SplitText";
 import type { MarqueeText, HeroItems } from "@/types/types";
@@ -12,10 +12,10 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
-const outfit = Outfit({
-  subsets: ["latin"],
-  variable: "--font-outfit",
-});
+// const outfit = Outfit({
+//   subsets: ["latin"],
+//   variable: "--font-outfit",
+// });
 
 const dmSans = DM_Sans({
   subsets: ["latin"],
@@ -343,7 +343,7 @@ const HeroSection: React.FC = () => {
             <div className="overflow-hidden">
               <h1
                 ref={giglanceTextRef}
-                className={`giglance-text pointer-events-none overflow-hidden text-[50px] leading-none font-black whitespace-nowrap text-black md:text-[100px] lg:text-[150px] 2xl:text-[200px]`}
+                className={`giglance-text pointer-events-none overflow-hidden text-[50px] leading-none font-black whitespace-nowrap  md:text-[100px] lg:text-[150px] 2xl:text-[200px]`}
               >
                 GIGLANCE
               </h1>
@@ -368,7 +368,7 @@ const HeroSection: React.FC = () => {
               </Button>
             </div>
 
-            <p className="hero-content-item text-sm font-bold text-gray-600 md:text-base">
+            <p className="hero-content-item text-sm font-bold text-muted-foreground md:text-base">
               {HERO_ITEMS.freelancersCount}
             </p>
           </div>
