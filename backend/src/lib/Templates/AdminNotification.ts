@@ -138,7 +138,16 @@
               <p style="margin: 5px 0 0;">© 2025 Giglance. All rights reserved.</p>
             </td>
           </tr>
-
+          <tr>
+          <td>
+              <p style="margin: 20px 20px 20px 20px;"> You can view or manage this seller’s registration from the admin dashboard:<br><br>
+              <a href="https://your-admin-dashboard-link.com" style="color: #2E86C1; text-decoration: none; margin-left:200px;">
+              Dashboard
+              </a>
+              </p>
+  
+          </td>
+          </tr>
         </table>
       </td>
     </tr>
