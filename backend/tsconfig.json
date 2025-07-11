@@ -6,7 +6,7 @@
     "removeComments": true,
     "types": ["node", "jest"],
     "allowJs": true,
-    "noEmit": true,
+    "noEmit": false,
     "noImplicitAny": true,
     "baseUrl": "./src",
     "paths": {
