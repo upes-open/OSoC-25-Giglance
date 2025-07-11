@@ -15,7 +15,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import type { Resolver } from "dns";
+
 
 const RegisterForm = () => {
   const [open, setOpen] = useState(false);
@@ -29,8 +29,6 @@ const RegisterForm = () => {
     resolver: zodResolver(registerFormSchema),
     defaultValues: {
       skills: [],
-      subcategories: [],
-      projectTypes: [],
       linkedin: "",
       github: "",
       twitter: "",
@@ -119,16 +117,7 @@ const RegisterForm = () => {
               />
               {errors.experience && <p className="text-destructive text-xs">{errors.experience.message}</p>}
             </div>
-            <div>
-              <label className="font-medium">Hourly Rate (₹) *</label>
-              <Input type="number" min={100} placeholder="e.g. 500" {...register("hourlyRate")} />
-              {errors.hourlyRate && <p className="text-destructive text-xs">{errors.hourlyRate.message}</p>}
-            </div>
-            <div>
-              <label className="font-medium">Available Hours/Week</label>
-              <Input type="number" min={1} placeholder="e.g. 20" {...register("hoursPerWeek")} />
-              {errors.hoursPerWeek && <p className="text-destructive text-xs">{errors.hoursPerWeek.message}</p>}
-            </div>
+            
             <div className="md:col-span-2">
               <label className="font-medium">About / Bio *</label>
               <Textarea
@@ -142,63 +131,6 @@ const RegisterForm = () => {
               <label className="font-medium">Resume / Portfolio URL *</label>
               <Input placeholder="https://..." {...register("resumeUrl")} />
               {errors.resumeUrl && <p className="text-destructive text-xs">{errors.resumeUrl.message}</p>}
-            </div>
-          </div>
-        </section>
-
-        {/* Service Categories */}
-        <section>
-          <h2 className="text-xl font-semibold mb-4">Service Categories</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <label className="font-medium">Primary Category *</label>
-              <Controller
-                control={control}
-                name="primaryCategory"
-                render={({ field }) => (
-                  <Select onValueChange={field.onChange} defaultValue={field.value}>
-                    <SelectTrigger className="w-full bg-background text-foreground border rounded p-2">
-                      <SelectValue placeholder="Select category" />
-                    </SelectTrigger>
-                    <SelectContent className="bg-popover text-popover-foreground">
-                      {categories.map((cat) => (
-                        <SelectItem key={cat.value} value={cat.value} className="dark:bg-popover dark:text-popover-foreground">
-                          {cat.label}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                )}
-              />
-              {errors.primaryCategory && <p className="text-destructive text-xs">{errors.primaryCategory.message}</p>}
-            </div>
-            <div>
-              <label className="font-medium">Subcategories</label>
-              <Controller
-                control={control}
-                name="subcategories"
-                render={({ field }) => (
-                  <Input
-                    placeholder="Select subcategories (comma separated)"
-                    value={field.value?.join(", ") ?? ""}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => field.onChange(e.target.value.split(",").map((s: string) => s.trim()))}
-                  />
-                )}
-              />
-            </div>
-            <div className="md:col-span-2">
-              <label className="font-medium">Preferred Project Types</label>
-              <Controller
-                control={control}
-                name="projectTypes"
-                render={({ field }) => (
-                  <Input
-                    placeholder="Select project types (comma separated)"
-                    value={field.value?.join(", ") ?? ""}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => field.onChange(e.target.value.split(",").map((s: string) => s.trim()))}
-                  />
-                )}
-              />
             </div>
           </div>
         </section>

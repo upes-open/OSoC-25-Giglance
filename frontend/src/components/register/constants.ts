@@ -1,5 +1,3 @@
-// Register form constants for select options
-
 export const skillsList = [
   "Web Development",
   "UI/UX Design",
