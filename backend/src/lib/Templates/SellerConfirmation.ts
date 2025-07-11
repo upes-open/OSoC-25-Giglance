@@ -2,21 +2,22 @@ export const WELCOME_EMAIL_TEMPLATE = (
   userName: string,
   fullName: string,
   email: string,
-  phoneNumber: string,
+
   location: string,
   profilePicture: string,
   skills: string,
   experience: string,
   hourlyRate: number,
-  availableHours: number,
   bio: string,
   resume: string,
   primaryCategory: string,
-  subCategories: string,
-  projectTypes: string,
-  linkedin: string,
-  github: string,
-  twitter: string,
+  phoneNumber?: string,
+  availableHours?: number,
+  subCategories?: string,
+  projectTypes?: string,
+  linkedin?: string,
+  github?: string,
+  twitter?: string,
 ) => `
 <!DOCTYPE html>
 <html lang="en">
@@ -59,7 +60,7 @@ export const WELCOME_EMAIL_TEMPLATE = (
           </tr>
           <tr>
             <td style="padding: 30px;">
-              Phone Number : ${phoneNumber}
+              Phone Number : ${phoneNumber ?? ''}
             </td>
           </tr>
           <tr>
@@ -95,7 +96,7 @@ export const WELCOME_EMAIL_TEMPLATE = (
           </tr>
           <tr>
             <td style="padding: 30px;">
-              Available Hours/Week : ${availableHours}
+              Available Hours/Week : ${availableHours ?? ''}
             </td>
           </tr>
           <tr>
@@ -121,12 +122,12 @@ export const WELCOME_EMAIL_TEMPLATE = (
           </tr>
           <tr>
             <td style="padding: 30px;">
-              Subcategories : ${subCategories}
+              Subcategories : ${subCategories ?? ''}
             </td>
           </tr>
           <tr>
             <td style="padding: 30px;">
-              Preferred Project Types : ${projectTypes}
+              Preferred Project Types : ${projectTypes ?? ''}
             </td>
           </tr>
           </table>
@@ -137,17 +138,17 @@ export const WELCOME_EMAIL_TEMPLATE = (
           </tr>
           <tr>
             <td style="padding: 30px;">
-              Linkedin : ${linkedin}
+              Linkedin : ${linkedin ?? ''}
             </td>
           </tr>
           <tr>
             <td style="padding: 30px;">
-              Github/Portfolio : ${github}
+              Github/Portfolio : ${github ?? ''}
             </td>
           </tr>
           <tr>
             <td style="padding: 30px;">
-              Twitter/X : ${twitter}
+              Twitter/X : ${twitter ?? ''}
             </td>
           </tr>
           </table>
