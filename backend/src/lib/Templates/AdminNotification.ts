@@ -3,7 +3,45 @@
  * This template is sent to the admin when a new user registered.
  */
 
- export const SELLER_REGISTRATION_ADMIN_TEMPLATE = `
+ type SellerDetails = {
+  fullName: string;
+  email: string;
+  phoneNumber?: string;
+  location?: string;
+  profilePicture?: string;
+  skills: string;
+  yearsOfExperience: string;
+  hourlyRate?: string;
+  availableHours?: string;
+  about: string;
+  resumeUrl: string;
+  primaryCategory: string;
+  subcategories?: string;
+  preferredProjects?: string;
+  linkedin?: string;
+  github?: string;
+  twitter?: string;
+};
+
+ export const SELLER_REGISTRATION_ADMIN_TEMPLATE =({ 
+ fullName,
+  email,
+  phoneNumber,
+  location,
+  profilePicture,
+  skills,
+  yearsOfExperience,
+  hourlyRate,
+  availableHours,
+  about,
+  resumeUrl,
+  primaryCategory,
+  subcategories,
+  preferredProjects,
+  linkedin,
+  github,
+  twitter,
+}: SellerDetails) =>`
  <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,23 +76,23 @@
               <table width="100%" cellpadding="8" cellspacing="0" style="border-collapse: collapse;">
                 <tr>
                   <td style="width: 200px; font-weight: bold; background-color: #f2f2f2; border: 1px solid #ddd;">Full Name</td>
-                  <td style="border: 1px solid #ddd;">{Full name}</td>
+                  <td style="border: 1px solid #ddd;">${fullName}</td>
                 </tr>
                 <tr>
                   <td style="font-weight: bold; background-color: #f2f2f2; border: 1px solid #ddd;">Email</td>
-                  <td style="border: 1px solid #ddd;">{Email}</td>
+                  <td style="border: 1px solid #ddd;">${email}</td>
                 </tr>
                 <tr>
                   <td style="font-weight: bold; background-color: #f2f2f2; border: 1px solid #ddd;">Phone Number</td>
-                  <td style="border: 1px solid #ddd;">{Phone Number}</td>
+                  <td style="border: 1px solid #ddd;">${phoneNumber}</td>
                 </tr>
                 <tr>
                   <td style="font-weight: bold; background-color: #f2f2f2; border: 1px solid #ddd;">Location</td>
-                  <td style="border: 1px solid #ddd;">{Location}</td>
+                  <td style="border: 1px solid #ddd;">${location}</td>
                 </tr>
                 <tr>
                   <td style="font-weight: bold; background-color: #f2f2f2; border: 1px solid #ddd;">Profile Picturess</td>
-                  <td style="border: 1px solid #ddd;">{Profile Picture}</td>
+                  <td style="border: 1px solid #ddd;">${profilePicture}</td>
                 </tr>
               </table>
               <!-- Professional Details -->
@@ -66,27 +104,27 @@
               <table width="100%" cellpadding="8" cellspacing="0" style="border-collapse: collapse;">
                 <tr>
                   <td style="width: 200px; font-weight: bold; background-color: #f2f2f2; border: 1px solid #ddd;">Skills</td>
-                  <td style="border: 1px solid #ddd;">{Skills}</td>
+                  <td style="border: 1px solid #ddd;">${skills}</td>
                 </tr>
                 <tr>
                   <td style="font-weight: bold; background-color: #f2f2f2; border: 1px solid #ddd;">Years of Experience</td>
-                  <td style="border: 1px solid #ddd;">{Years of Experience}</td>
+                  <td style="border: 1px solid #ddd;">${yearsOfExperience}</td>
                 </tr>
                 <tr>
                   <td style="font-weight: bold; background-color: #f2f2f2; border: 1px solid #ddd;">Hourly Rate (in Rs)</td>
-                  <td style="border: 1px solid #ddd;">{Hourly Rate}</td>
+                  <td style="border: 1px solid #ddd;">${hourlyRate}</td>
                 </tr>
                 <tr>
                   <td style="font-weight: bold; background-color: #f2f2f2; border: 1px solid #ddd;">Available Hours/Week</td>
-                  <td style="border: 1px solid #ddd;">{Available Hours/Week}</td>
+                  <td style="border: 1px solid #ddd;">${availableHours}</td>
                 </tr>
                 <tr>
                   <td style="font-weight: bold; background-color: #f2f2f2; border: 1px solid #ddd;">About / Bio</td>
-                  <td style="border: 1px solid #ddd;">{About / Bio}</td>
+                  <td style="border: 1px solid #ddd;">${about}</td>
                 </tr>
                 <tr>
                   <td style="font-weight: bold; background-color: #f2f2f2; border: 1px solid #ddd;">Resume / Portfolio URL</td>
-                  <td style="border: 1px solid #ddd;">{URL}</td>
+                  <td style="border: 1px solid #ddd;">${resumeUrl}</td>
                 </tr>
               </table>
               <!--Service Categories -->
@@ -98,15 +136,15 @@
               <table width="100%" cellpadding="8" cellspacing="0" style="border-collapse: collapse;">
                 <tr>
                   <td style="width: 200px; font-weight: bold; background-color: #f2f2f2; border: 1px solid #ddd;">Primary Category</td>
-                  <td style="border: 1px solid #ddd;">{Primary Category}</td>
+                  <td style="border: 1px solid #ddd;">${primaryCategory}</td>
                 </tr>
                 <tr>
                   <td style="font-weight: bold; background-color: #f2f2f2; border: 1px solid #ddd;">Subcategories</td>
-                  <td style="border: 1px solid #ddd;">{Subcategories}</td>
+                  <td style="border: 1px solid #ddd;">${subcategories}</td>
                 </tr>Date
                 <tr>
                   <td style="font-weight: bold; background-color: #f2f2f2; border: 1px solid #ddd;">Preferred Project Types</td>
-                  <td style="border: 1px solid #ddd;">{Preferred Project Types}</td>
+                  <td style="border: 1px solid #ddd;">${preferredProjects}</td>
                 </tr>
               </table>
               <!-- Social Links -->
@@ -118,15 +156,15 @@
               <table width="100%" cellpadding="8" cellspacing="0" style="border-collapse: collapse;">
                 <tr>
                   <td style="width: 200px; font-weight: bold; background-color: #f2f2f2; border: 1px solid #ddd;">LinkedIn</td>
-                  <td style="border: 1px solid #ddd;">{URL}</td>
+                  <td style="border: 1px solid #ddd;">${linkedin}</td>
                 </tr>
                 <tr>
                   <td style="font-weight: bold; background-color: #f2f2f2; border: 1px solid #ddd;">GitHub / Portfolio</td>
-                  <td style="border: 1px solid #ddd;">{URL}</td>
+                  <td style="border: 1px solid #ddd;">${github}</td>
                 </tr>
                 <tr>
                   <td style="font-weight: bold; background-color: #f2f2f2; border: 1px solid #ddd;">Twitter / X</td>
-                  <td style="border: 1px solid #ddd;">{URL}</td>
+                  <td style="border: 1px solid #ddd;">${twitter}</td>
                 </tr>
               </table>
             </td>
