@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
+import { ModeToggle } from "./ui/darkmode";
 
 interface MobileNavProps {
   onTermsClick: () => void;
@@ -109,6 +110,9 @@ export const MobileNav: React.FC<MobileNavProps> = ({
                 Privacy Policy
               </span>
             </button>
+
+            <ModeToggle/>
+            
           </div>
 
           <div className="border-border my-4 border-t sm:my-6"></div>

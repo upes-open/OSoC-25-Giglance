@@ -149,7 +149,7 @@ const SearchBar: React.FC = () => {
               <div className="ml-auto">
                 <Button
                   type="submit"
-                  className="bg-primary rounded-lg px-6 py-2 font-medium text-white hover:bg-teal-600"
+                  className="bg-primary rounded-lg px-6 py-2 font-medium text-card"
                 >
                   Search
                 </Button>
