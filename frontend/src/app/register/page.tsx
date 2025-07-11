@@ -8,8 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-// import MultiSelect from your component library or implement it if not present
-// import { MultiSelect } from "@/components/ui/multiselect";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 // --- Zod Schema ---
 const formSchema = z.object({
@@ -127,7 +126,6 @@ const onSubmit: SubmitHandler<FormValues> = (data) => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label className="font-medium">Skills *</label>
-              {/* Replace with your MultiSelect component */}
               <Controller
                 control={control}
                 name="skills"
@@ -143,21 +141,25 @@ const onSubmit: SubmitHandler<FormValues> = (data) => {
             </div>
             <div>
               <label className="font-medium">Years of Experience *</label>
-              <select
-                className="w-full border rounded p-2"
-                {...register("experience")}
-                defaultValue=""
-              >
-                <option value="" disabled>
-                  Select experience
-                </option>
-                {experienceList.map((exp) => (
-                  <option key={exp} value={exp}>
-                    {exp}
-                  </option>
-                ))}
-              </select>
-              {errors.experience && <p className="text-red-500 text-xs">{errors.experience.message}</p>}
+              <Controller
+                control={control}
+                name="experience"
+                render={({ field }) => (
+                  <Select onValueChange={field.onChange} defaultValue={field.value}>
+                    <SelectTrigger className="w-full bg-background text-foreground border rounded p-2">
+                      <SelectValue placeholder="Select experience" />
+                    </SelectTrigger>
+                    <SelectContent className="bg-popover text-popover-foreground">
+                      {experienceList.map((exp) => (
+                        <SelectItem key={exp} value={exp} className="dark:bg-popover dark:text-popover-foreground">
+                          {exp}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                )}
+              />
+              {errors.experience && <p className="text-destructive text-xs">{errors.experience.message}</p>}
             </div>
             <div>
               <label className="font-medium">Hourly Rate (₹) *</label>
@@ -186,60 +188,6 @@ const onSubmit: SubmitHandler<FormValues> = (data) => {
           </div>
         </section>
 
-        {/* Service Categories */}
-        <section>
-          <h2 className="text-xl font-semibold mb-4">Service Categories</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <label className="font-medium">Primary Category *</label>
-              <select
-                className="w-full border rounded p-2"
-                {...register("primaryCategory")}
-                defaultValue=""
-              >
-                <option value="" disabled>
-                  Select category
-                </option>
-                {categories.map((cat) => (
-                  <option key={cat.value} value={cat.value}>
-                    {cat.label}
-                  </option>
-                ))}
-              </select>
-              {errors.primaryCategory && <p className="text-red-500 text-xs">{errors.primaryCategory.message}</p>}
-            </div>
-            <div>
-              <label className="font-medium">Subcategories</label>
-              {/* Replace with your MultiSelect component */}
-              <Controller
-                control={control}
-                name="subcategories"
-                render={({ field }) => (
-                  <Input
-                    placeholder="Select subcategories (comma separated)"
-                    value={field.value?.join(", ") ?? ""}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => field.onChange(e.target.value.split(",").map((s: string) => s.trim()))}
-                  />
-                )}
-              />
-            </div>
-            <div className="md:col-span-2">
-              <label className="font-medium">Preferred Project Types</label>
-              {/* Replace with your MultiSelect component */}
-              <Controller
-                control={control}
-                name="projectTypes"
-                render={({ field }) => (
-                  <Input
-                    placeholder="Select project types (comma separated)"
-                    value={field.value?.join(", ") ?? ""}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => field.onChange(e.target.value.split(",").map((s: string) => s.trim()))}
-                  />
-                )}
-              />
-            </div>
-          </div>
-        </section>
 
         {/* Social Links */}
         <section>
