@@ -3,7 +3,7 @@
  * This template is sent to the admin when a new user registered.
  */
 
- type SellerDetails = {
+ interface SellerDetails  {
   fullName: string;
   email: string;
   phoneNumber?: string;
