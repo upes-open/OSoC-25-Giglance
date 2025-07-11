@@ -181,7 +181,7 @@ const onSubmit: SubmitHandler<FormValues> = (data) => {
               {errors.bio && <p className="text-red-500 text-xs">{errors.bio.message}</p>}
             </div>
             <div className="md:col-span-2">
-              <label className="font-medium">Resume / Portfolio URL *</label>
+              <label className="font-medium">Resume*</label>
               <Input placeholder="https://..." {...register("resumeUrl")} />
               {errors.resumeUrl && <p className="text-red-500 text-xs">{errors.resumeUrl.message}</p>}
             </div>
