@@ -8,6 +8,7 @@ import { MobileNav } from "@/components/MobileNav";
 import { MarkdownModal } from "@/components/MarkdownModal";
 import { useRouter } from "next/navigation";
 import { useUser, UserButton } from "@clerk/nextjs";
+import { ModeToggle } from "./ui/darkmode";
 
 const Navbar: React.FC = () => {
   const [isTermsOpen, setIsTermsOpen] = useState(false);
@@ -31,13 +32,15 @@ const Navbar: React.FC = () => {
               href="/"
               className="group flex flex-shrink-0 items-center gap-2 transition-all duration-200 hover:opacity-80 sm:gap-3"
             >
-              <Image
-                src="/logo.png"
-                alt="Giglance Logo"
-                width={40}
-                height={40}
-                className="h-8 w-8 rounded-full transition-transform group-hover:scale-105 sm:h-9 sm:w-9 lg:h-10 lg:w-10"
-              />
+              <div className="border border-transparent bg-white rounded-full ">
+                <Image
+                  src="/logo.png"
+                  alt="Giglance Logo"
+                  width={40}
+                  height={40}
+                  className="h-8 w-8 rounded-full transition-transform group-hover:scale-105 sm:h-9 sm:w-9 lg:h-10 lg:w-10"
+                />
+              </div>
               <span className="text-foreground text-lg font-bold whitespace-nowrap sm:text-xl lg:text-2xl">
                 Giglance
               </span>
@@ -85,6 +88,8 @@ const Navbar: React.FC = () => {
                 Privacy Policy
                 <span className="bg-muted-foreground absolute inset-x-0 -bottom-1 h-0.5 origin-left scale-x-0 transition-transform duration-200 group-hover:scale-x-100"></span>
               </button>
+              
+              <ModeToggle />
 
               <div className="flex items-center gap-4">
                 {isLoaded ? (

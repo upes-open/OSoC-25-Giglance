@@ -10,6 +10,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import LocomotiveScrollWrapper from "@/components/LocomotiveScrollWrapper";
 import OverlayReveal from "@/components/OverlayReveal";
 import Cursor from "@/components/Cursor";
+import { ThemeProvider } from "@/providers/theme-provider"
 
 export const metadata: Metadata = {
   title: "Giglance - Freelance Platform",
@@ -36,10 +37,13 @@ export default function RootLayout({
               <div className="bg-background relative min-h-screen w-full antialiased">
                 <div className="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)] [background-size:16px_16px] dark:bg-[radial-gradient(#374151_1px,transparent_1px)]"></div>
                 <div className="relative z-10">
-                  <Navbar />
-                  {children}
-                  <Footer />
-                  <Toaster />
+                  <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange >
+                    <Navbar />
+                    {children}
+                    <Footer />
+                    <Toaster />
+                  </ThemeProvider>
+
                 </div>
               </div>
             </Providers>
