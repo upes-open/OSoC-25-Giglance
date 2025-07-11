@@ -20,7 +20,7 @@ export function useMarkdownContent(filename: string): MarkdownContent {
         setError(null);
 
         const response = await fetch(
-          `/api/markdown?file=${encodeURIComponent(filename)}`,
+          `/markdown/${encodeURIComponent(filename)}`,
         );
 
         if (!response.ok) {
