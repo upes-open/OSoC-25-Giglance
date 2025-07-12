@@ -1,11 +1,8 @@
 import SearchBar from "@/components/SearchBar";
 import BrowseByCategory from "@/components/BrowseByCategory";
 import ContactSection from "@/components/contact-us/Contactsection";
-
 import HeroSection from "@/components/HeroSection";
-
 import { FaqAccordion } from "@/components/FaqAccordion";
-
 
 const Page: React.FC = () => {
   return (
