@@ -18,6 +18,7 @@ export const SELLER_CONFIRMATION_TEMPLATE = (formData: {
   
   linkedIn?: string;
   githubPortfolio?: string;
+  Portfolio?: string;
   twitterX?: string;
 }) => {
   return `
@@ -95,14 +96,6 @@ export const SELLER_CONFIRMATION_TEMPLATE = (formData: {
                             <td style="padding: 12px 15px; border-bottom: 1px solid #e2e8f0; color: #4a5568;">${formData.yearsOfExperience}</td>
                         </tr>
                         <tr>
-                            <td style="padding: 12px 15px; border-bottom: 1px solid #e2e8f0; font-weight: 600; color: #2d3748; background-color: #edf2f7;">Hourly Rate</td>
-                            <td style="padding: 12px 15px; border-bottom: 1px solid #e2e8f0; color: #4a5568;">₹${formData.hourlyRate}</td>
-                        </tr>
-                        <tr>
-                            <td style="padding: 12px 15px; border-bottom: 1px solid #e2e8f0; font-weight: 600; color: #2d3748; background-color: #edf2f7;">Available Hours/Week</td>
-                            <td style="padding: 12px 15px; border-bottom: 1px solid #e2e8f0; color: #4a5568;">${formData.availableHoursPerWeek ?? 'Not specified'}</td>
-                        </tr>
-                        <tr>
                             <td style="padding: 12px 15px; border-bottom: 1px solid #e2e8f0; font-weight: 600; color: #2d3748; background-color: #edf2f7;">About/Bio</td>
                             <td style="padding: 12px 15px; border-bottom: 1px solid #e2e8f0; color: #4a5568;">${formData.aboutBio}</td>
                         </tr>
@@ -111,25 +104,6 @@ export const SELLER_CONFIRMATION_TEMPLATE = (formData: {
                             <td style="padding: 12px 15px; color: #4a5568;">
                                 <a href="${formData.resumePortfolioUrl}" style="color: #667eea; text-decoration: none;">View Resume/Portfolio</a>
                             </td>
-                        </tr>
-                    </table>
-                </div>
-
-                <!-- Service Categories Section -->
-                <div style="margin-bottom: 30px;">
-                    <h4 style="color: #4a5568; margin: 0 0 15px 0; font-size: 18px; font-weight: 600;">Service Categories</h4>
-                    <table style="width: 100%; border-collapse: collapse; background-color: #f7fafc; border-radius: 8px; overflow: hidden;">
-                        <tr>
-                            <td style="padding: 12px 15px; border-bottom: 1px solid #e2e8f0; font-weight: 600; color: #2d3748; background-color: #edf2f7; width: 40%;">Primary Category</td>
-                            <td style="padding: 12px 15px; border-bottom: 1px solid #e2e8f0; color: #4a5568;">${formData.primaryCategory}</td>
-                        </tr>
-                        <tr>
-                            <td style="padding: 12px 15px; border-bottom: 1px solid #e2e8f0; font-weight: 600; color: #2d3748; background-color: #edf2f7;">Subcategories</td>
-                            <td style="padding: 12px 15px; border-bottom: 1px solid #e2e8f0; color: #4a5568;">${formData.subcategories?.join(', ') ?? 'Not specified'}</td>
-                        </tr>
-                        <tr>
-                            <td style="padding: 12px 15px; font-weight: 600; color: #2d3748; background-color: #edf2f7;">Preferred Project Types</td>
-                            <td style="padding: 12px 15px; color: #4a5568;">${formData.preferredProjectTypes?.join(', ') ?? 'Not specified'}</td>
                         </tr>
                     </table>
                 </div>
@@ -145,9 +119,15 @@ export const SELLER_CONFIRMATION_TEMPLATE = (formData: {
                             </td>
                         </tr>
                         <tr>
-                            <td style="padding: 12px 15px; border-bottom: 1px solid #e2e8f0; font-weight: 600; color: #2d3748; background-color: #edf2f7;">GitHub/Portfolio</td>
+                            <td style="padding: 12px 15px; border-bottom: 1px solid #e2e8f0; font-weight: 600; color: #2d3748; background-color: #edf2f7;">GitHub</td>
                             <td style="padding: 12px 15px; border-bottom: 1px solid #e2e8f0; color: #4a5568;">
                                 ${formData.githubPortfolio ? `<a href="${formData.githubPortfolio}" style="color: #667eea; text-decoration: none;">${formData.githubPortfolio}</a>` : 'Not provided'}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 12px 15px; border-bottom: 1px solid #e2e8f0; font-weight: 600; color: #2d3748; background-color: #edf2f7;">Portfolio</td>
+                            <td style="padding: 12px 15px; border-bottom: 1px solid #e2e8f0; color: #4a5568;">
+                                ${formData.Portfolio ? `<a href="${formData.Portfolio}" style="color: #667eea; text-decoration: none;">${formData.Portfolio}</a>` : 'Not provided'}
                             </td>
                         </tr>
                         <tr>
