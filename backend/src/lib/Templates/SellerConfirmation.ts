@@ -175,8 +175,8 @@ export const SELLER_CONFIRMATION_TEMPLATE = (formData: {
             <div style="text-align: center; padding: 20px 0; border-top: 1px solid #e2e8f0;">
                 <p style="color: #4a5568; margin: 0 0 10px 0;">Have questions? We're here to help!</p>
                 <p style="color: #4a5568; margin: 0;">
-                    Email us at <a href="mailto:support@platform.com" style="color: #667eea; text-decoration: none;">support@platform.com</a>
-                    or call us at <a href="tel:+1234567890" style="color: #667eea; text-decoration: none;">+1 (234) 567-890</a>
+                    Email us at <a href="mailto:osoc25giglance@gmail.com" style="color: #667eea; text-decoration: none;">osoc25giglance@gmail.com</a>
+                    or call us at <a href="tel:+1234567890" style="color: #667eea; text-decoration: none;">+91 9876545678</a>
                 </p>
             </div>
         </div>
@@ -184,7 +184,7 @@ export const SELLER_CONFIRMATION_TEMPLATE = (formData: {
         <!-- Footer -->
         <div style="background-color: #2d3748; padding: 30px; text-align: center;">
             <p style="color: #a0aec0; margin: 0 0 10px 0; font-size: 14px;">
-                © 2024 Your Platform Name. All rights reserved.
+                © 2025 Your Platform Name. All rights reserved.
             </p>
             <p style="color: #718096; margin: 0; font-size: 12px;">
                 This email was sent to ${formData.email}. If you have any questions, please contact our support team.
