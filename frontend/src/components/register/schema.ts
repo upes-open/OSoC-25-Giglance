@@ -12,6 +12,7 @@ export const registerFormSchema = z.object({
   resumeUrl: z.string().url("Must be a valid URL"),
   linkedin: z.string().url().optional().or(z.literal("")),
   github: z.string().url().optional().or(z.literal("")),
+  portfolio: z.string().url().optional().or(z.literal("")),
   twitter: z.string().url().optional().or(z.literal("")),
 });
 

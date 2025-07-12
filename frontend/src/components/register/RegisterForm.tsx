@@ -15,6 +15,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { InputTags } from "@/components/ui/input-tags";
 
 
 const RegisterForm = () => {
@@ -86,10 +87,10 @@ const RegisterForm = () => {
                 control={control}
                 name="skills"
                 render={({ field }) => (
-                  <Input
-                    placeholder="Select skills (comma separated)"
-                    value={field.value.join(", ")}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => field.onChange(e.target.value.split(",").map((s: string) => s.trim()))}
+                  <InputTags
+                    value={field.value}
+                    onChange={field.onChange}
+                    placeholder="Add skills"
                   />
                 )}
               />
@@ -145,9 +146,14 @@ const RegisterForm = () => {
               {errors.linkedin && <p className="text-destructive text-xs">{errors.linkedin.message}</p>}
             </div>
             <div>
-              <label className="font-medium">GitHub / Portfolio</label>
+              <label className="font-medium">GitHub</label>
               <Input placeholder="https://github.com/username" {...register("github")} />
               {errors.github && <p className="text-destructive text-xs">{errors.github.message}</p>}
+            </div>
+            <div>
+              <label className="font-medium">Portfolio</label>
+              <Input placeholder="https://yourportfolio.com" {...register("portfolio")} />
+              {errors.portfolio && <p className="text-destructive text-xs">{errors.portfolio.message}</p>}
             </div>
             <div>
               <label className="font-medium">Twitter / X</label>
