@@ -1,4 +1,4 @@
-export const generateSellerConfirmationEmail = (formData: {
+export const SELLER_CONFIRMATION_TEMPLATE = (formData: {
   fullName: string;
   email: string;
   phoneNumber?: string;
@@ -67,7 +67,7 @@ export const generateSellerConfirmationEmail = (formData: {
                         </tr>
                         <tr>
                             <td style="padding: 12px 15px; border-bottom: 1px solid #e2e8f0; font-weight: 600; color: #2d3748; background-color: #edf2f7;">Phone Number</td>
-                            <td style="padding: 12px 15px; border-bottom: 1px solid #e2e8f0; color: #4a5568;">${formData.phoneNumber || 'Not provided'}</td>
+                            <td style="padding: 12px 15px; border-bottom: 1px solid #e2e8f0; color: #4a5568;">${formData.phoneNumber ?? 'Not provided'}</td>
                         </tr>
                         <tr>
                             <td style="padding: 12px 15px; border-bottom: 1px solid #e2e8f0; font-weight: 600; color: #2d3748; background-color: #edf2f7;">Location</td>
@@ -100,7 +100,7 @@ export const generateSellerConfirmationEmail = (formData: {
                         </tr>
                         <tr>
                             <td style="padding: 12px 15px; border-bottom: 1px solid #e2e8f0; font-weight: 600; color: #2d3748; background-color: #edf2f7;">Available Hours/Week</td>
-                            <td style="padding: 12px 15px; border-bottom: 1px solid #e2e8f0; color: #4a5568;">${formData.availableHoursPerWeek || 'Not specified'}</td>
+                            <td style="padding: 12px 15px; border-bottom: 1px solid #e2e8f0; color: #4a5568;">${formData.availableHoursPerWeek ?? 'Not specified'}</td>
                         </tr>
                         <tr>
                             <td style="padding: 12px 15px; border-bottom: 1px solid #e2e8f0; font-weight: 600; color: #2d3748; background-color: #edf2f7;">About/Bio</td>
@@ -125,11 +125,11 @@ export const generateSellerConfirmationEmail = (formData: {
                         </tr>
                         <tr>
                             <td style="padding: 12px 15px; border-bottom: 1px solid #e2e8f0; font-weight: 600; color: #2d3748; background-color: #edf2f7;">Subcategories</td>
-                            <td style="padding: 12px 15px; border-bottom: 1px solid #e2e8f0; color: #4a5568;">${formData.subcategories?.join(', ') || 'Not specified'}</td>
+                            <td style="padding: 12px 15px; border-bottom: 1px solid #e2e8f0; color: #4a5568;">${formData.subcategories?.join(', ') ?? 'Not specified'}</td>
                         </tr>
                         <tr>
                             <td style="padding: 12px 15px; font-weight: 600; color: #2d3748; background-color: #edf2f7;">Preferred Project Types</td>
-                            <td style="padding: 12px 15px; color: #4a5568;">${formData.preferredProjectTypes?.join(', ') || 'Not specified'}</td>
+                            <td style="padding: 12px 15px; color: #4a5568;">${formData.preferredProjectTypes?.join(', ') ?? 'Not specified'}</td>
                         </tr>
                     </table>
                 </div>
