@@ -47,6 +47,7 @@ async function getDocumentContent(filename: string): Promise<string> {
         const content = await fs.readFile(filePath, "utf8");
         return content;
       } catch (error) {
+        console.error(error)
         // Continue to next path
         continue;
       }
